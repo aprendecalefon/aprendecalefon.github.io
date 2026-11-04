@@ -1,0 +1,420 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Calefón 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap">
+<style>
+/* Layout: lienzo 3D a pantalla completa, ficha flotante arriba a la izquierda, controles abajo. Banco de taller: grafito, acentos cobre y llama azul. */
+:root {
+  --bg: #15181c;
+  --panel: rgba(24, 28, 33, 0.88);
+  --line: #2f353d;
+  --fg: #e8e4dd;
+  --muted: #9aa3ad;
+  --copper: #d08a5c;
+  --flame: #4aa3ff;
+  --display: 'IBM Plex Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--display); overflow: hidden; }
+#stage { position: fixed; inset: 0; }
+#stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.card {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 16px);
+  left: max(16px, env(safe-area-inset-left, 0px));
+  width: min(320px, calc(100vw - 32px));
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  backdrop-filter: blur(6px);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.eyebrow { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); }
+h1 { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.1; text-wrap: balance; }
+.flow { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.45; color: var(--muted); display: flex; flex-direction: column; gap: 3px; }
+.flow b { color: var(--fg); font-weight: 600; }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+details[open] summary { margin-bottom: 8px; }
+.note { font-size: 12.5px; line-height: 1.45; color: var(--muted); margin: 0; }
+.controls {
+  position: fixed;
+  left: 50%; transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  width: max-content; max-width: calc(100vw - 32px);
+}
+button {
+  font-family: var(--display); font-size: 14px; font-weight: 600;
+  color: var(--fg); background: var(--panel);
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 9px 16px; cursor: pointer;
+}
+button:hover { border-color: var(--copper); }
+button:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+button[aria-pressed="true"] { background: var(--copper); color: #1b1410; border-color: var(--copper); }
+#btnFire[aria-pressed="true"] { background: var(--flame); border-color: var(--flame); color: #08172a; }
+#labels { position: fixed; inset: 0; pointer-events: none; }
+.tag {
+  position: absolute; left: 0; top: 0;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 600; white-space: nowrap;
+  color: var(--fg);
+  transform: translate(-6px, -50%);
+}
+.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--copper); box-shadow: 0 0 0 3px rgba(208, 138, 92, 0.25); flex: none; }
+.tag span { background: rgba(21, 24, 28, 0.82); border: 1px solid var(--line); border-radius: 6px; padding: 3px 7px; }
+@media (max-width: 560px) {
+  .card { padding: 12px 14px; gap: 8px; }
+  h1 { font-size: 20px; }
+  .flow { font-size: 12px; }
+  .tag { font-size: 10.5px; }
+  button { font-size: 13px; padding: 8px 12px; }
+}
+</style>
+
+<div id="stage" aria-label="Modelo 3D giratorio del interior de un calefón a gas"></div>
+<div id="labels"></div>
+
+<section class="card">
+  <p class="eyebrow">Vista interna · sin carcasa</p>
+  <h1>Calefón a gas</h1>
+  <ol class="flow">
+    <li><b>Agua fría</b> entra y pasa por el sensor de flujo.</li>
+    <li>La <b>válvula de gas</b> abre y los <b>electrodos</b> encienden el quemador.</li>
+    <li>El <b>intercambiador</b> calienta el agua del serpentín.</li>
+    <li>Los gases salen por el <b>cortatiro</b> hacia el ducto.</li>
+  </ol>
+  <details>
+    <summary>Sobre este modelo</summary>
+    <p class="note">Representación genérica a escala aproximada, hecha a partir de la fotografía. Las medidas y la posición de entradas y salidas cambian según marca y modelo: verifica siempre con el manual del equipo.</p>
+  </details>
+</section>
+
+<div class="controls">
+  <button id="btnSpin" type="button" aria-pressed="true">Girando</button>
+  <button id="btnFire" type="button" aria-pressed="false">Encender</button>
+  <button id="btnFront" type="button">Frontal</button>
+  <button id="btnSide" type="button">Lateral</button>
+  <button id="btnLabels" type="button" aria-pressed="true">Etiquetas</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  const stage = document.getElementById('stage');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  stage.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('#15181c');
+  scene.fog = new THREE.Fog('#15181c', 160, 300);
+
+  const camera = new THREE.PerspectiveCamera(36, 1, 0.5, 600);
+  camera.position.set(52, 46, 86);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 26, 4);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 35;
+  controls.maxDistance = 170;
+  controls.autoRotate = !reduceMotion;
+  controls.autoRotateSpeed = 1.3;
+
+  scene.add(new THREE.HemisphereLight('#e4ebf2', '#2a2420', 0.6));
+  const key = new THREE.DirectionalLight('#fff1e2', 1.1);
+  key.position.set(35, 70, 55);
+  key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048);
+  Object.assign(key.shadow.camera, { left: -45, right: 45, top: 70, bottom: -20, near: 1, far: 200 });
+  key.shadow.bias = -0.0005;
+  scene.add(key);
+  const rim = new THREE.DirectionalLight('#9fc4ff', 0.4);
+  rim.position.set(-50, 30, -40);
+  scene.add(rim);
+  const flameLight = new THREE.PointLight('#4aa3ff', 0, 40, 2);
+  flameLight.position.set(0, 21, 9);
+  scene.add(flameLight);
+
+  // Textura de acero galvanizado (lentejuelas)
+  function galvTexture() {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const g = c.getContext('2d');
+    g.fillStyle = '#a9b0b6'; g.fillRect(0, 0, 256, 256);
+    for (let i = 0; i < 220; i++) {
+      const x = Math.random() * 256, y = Math.random() * 256, r = 6 + Math.random() * 18;
+      const v = 150 + Math.floor(Math.random() * 60);
+      g.fillStyle = `rgb(${v},${v + 4},${v + 8})`;
+      g.beginPath();
+      for (let k = 0; k < 6; k++) { const a = k / 6 * Math.PI * 2 + Math.random() * 0.4; g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r); }
+      g.fill();
+    }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 3); t.encoding = THREE.sRGBEncoding;
+    return t;
+  }
+
+  const M = {
+    galv: new THREE.MeshStandardMaterial({ map: galvTexture(), roughness: 0.45, metalness: 0.75 }),
+    hood: new THREE.MeshStandardMaterial({ color: '#e9ebed', roughness: 0.55, metalness: 0.15 }),
+    alu: new THREE.MeshStandardMaterial({ color: '#cfd4d9', roughness: 0.3, metalness: 0.9 }),
+    copper: new THREE.MeshStandardMaterial({ color: '#c97f4f', roughness: 0.28, metalness: 0.88 }),
+    copperBox: new THREE.MeshStandardMaterial({ color: '#d39066', roughness: 0.22, metalness: 0.9 }),
+    brass: new THREE.MeshStandardMaterial({ color: '#c9a23f', roughness: 0.3, metalness: 0.9 }),
+    burner: new THREE.MeshStandardMaterial({ color: '#b9bec4', roughness: 0.4, metalness: 0.8 }),
+    dark: new THREE.MeshStandardMaterial({ color: '#1b1c1f', roughness: 0.6 }),
+    chamber: new THREE.MeshStandardMaterial({ color: '#2a2622', roughness: 0.9 }),
+    ceramic: new THREE.MeshStandardMaterial({ color: '#f3efe6', roughness: 0.5 }),
+    steelBox: new THREE.MeshStandardMaterial({ color: '#b6bcc2', roughness: 0.35, metalness: 0.85 }),
+    white: new THREE.MeshStandardMaterial({ color: '#efede8', roughness: 0.7 }),
+    red: new THREE.MeshStandardMaterial({ color: '#c62f25', roughness: 0.5 }),
+    floor: new THREE.MeshStandardMaterial({ color: '#1a1d21', roughness: 1 })
+  };
+  function sh(o) { o.traverse(m => { if (m.isMesh && !(m.material && m.material.transparent)) { m.castShadow = true; m.receiveShadow = true; } }); return o; }
+  function add(geo, mat, x, y, z) { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); scene.add(sh(m)); return m; }
+  function pipe(pts, r, mat, seg, rad) {
+    const c = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p)), false, 'centripetal', 0.5);
+    const m = new THREE.Mesh(new THREE.TubeGeometry(c, seg || 140, r, rad || 12, false), mat);
+    scene.add(sh(m)); return m;
+  }
+
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(180, 64), M.floor);
+  floor.rotation.x = -Math.PI / 2; floor.position.y = -5; floor.receiveShadow = true; scene.add(floor);
+
+  // Placa trasera galvanizada con pestañas
+  add(new THREE.BoxGeometry(31, 50, 0.3), M.galv, 0, 24.5, 0);
+  add(new THREE.BoxGeometry(0.3, 50, 2.2), M.galv, -15.4, 24.5, 1.1);
+  add(new THREE.BoxGeometry(0.3, 50, 2.2), M.galv, 15.4, 24.5, 1.1);
+  [-11, 11].forEach(x => {
+    const tab = add(new THREE.BoxGeometry(4.5, 0.3, 3), M.galv, x, -0.4, 1.6);
+  });
+
+  // Campana / cortatiro (blanca) con collarín de salida de gases
+  const hs = new THREE.Shape();
+  hs.moveTo(-16.5, 54); hs.lineTo(16.5, 54); hs.lineTo(16.5, 46); hs.lineTo(11.5, 40); hs.lineTo(-11.5, 40); hs.lineTo(-16.5, 46); hs.lineTo(-16.5, 54);
+  const hood = new THREE.Mesh(new THREE.ExtrudeGeometry(hs, { depth: 14, bevelEnabled: true, bevelThickness: 0.25, bevelSize: 0.25, bevelSegments: 2 }), M.hood);
+  hood.position.z = 0.5; scene.add(sh(hood));
+  [[-12, 49], [12, 49], [-13, 51.5], [13, 51.5]].forEach(([x, y], i) => {
+    const r = i < 2 ? 1.1 : 0.6;
+    const h = new THREE.Mesh(new THREE.CircleGeometry(r, 24), M.dark); h.position.set(x, y, 14.82); scene.add(h);
+  });
+  for (let i = 0; i < 10; i++) {
+    const d = new THREE.Mesh(new THREE.CircleGeometry(0.35, 16), M.alu);
+    d.position.set(-9 + (i % 5) * 4.5, 45 + Math.floor(i / 5) * 4, 14.82); scene.add(d);
+  }
+  add(new THREE.CylinderGeometry(4.6, 4.6, 3.2, 48, 1, true), M.alu, 0, 55.6, 7.5).material.side = THREE.DoubleSide;
+  add(new THREE.TorusGeometry(4.6, 0.25, 10, 48), M.alu, 0, 57.2, 7.5).rotation.x = Math.PI / 2;
+
+  // Cámara de combustión (oscura) bajo la campana
+  add(new THREE.BoxGeometry(24, 2.4, 11), M.chamber, 0, 39, 7);
+
+  // Intercambiador de calor (caja de cobre)
+  add(new THREE.BoxGeometry(26, 14, 11), M.copperBox, 0, 31, 7);
+  const lip = add(new THREE.BoxGeometry(20, 3.2, 10), M.copperBox, 0, 22.6, 7);
+  [-11.6, 11.6].forEach((x, i) => {
+    const wedge = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 2.4, 3.2, 3), M.copperBox);
+    wedge.position.set(x * 0.95, 22.6, 7); wedge.rotation.set(0, Math.PI / 6, i ? Math.PI / 2 : -Math.PI / 2);
+    scene.add(sh(wedge));
+  });
+  // Nervios horizontales en el frente
+  [27.5, 34].forEach(y => add(new THREE.BoxGeometry(24, 0.35, 0.3), M.copper, 0, y, 12.6));
+
+  // Serpentín de agua: tres vueltas alrededor del intercambiador, unidas por los costados
+  const TR = 0.75, X = 14.1, ZF = 13.3, ZB = 1.4;
+  function loop(y) {
+    const pts = [];
+    pts.push([-X, y, ZB + 1], [-X, y, ZF - 1.2], [-X + 1.2, y, ZF], [X - 1.2, y, ZF], [X, y, ZF - 1.2], [X, y, ZB + 1]);
+    return pts;
+  }
+  const levels = [37.6, 31.4, 25.2];
+  levels.forEach(y => pipe(loop(y), TR, M.copper, 160));
+  // Codos traseros que unen las vueltas (alternando lados)
+  pipe([[X, 37.6, ZB + 1], [X, 37.6, ZB], [X, 34.5, ZB - 0.2], [X, 31.4, ZB], [X, 31.4, ZB + 1]], TR, M.copper, 60);
+  pipe([[-X, 31.4, ZB + 1], [-X, 31.4, ZB], [-X, 28.3, ZB - 0.2], [-X, 25.2, ZB], [-X, 25.2, ZB + 1]], TR, M.copper, 60);
+
+  // Salida de agua caliente (izquierda): desde la vuelta superior hacia abajo
+  pipe([[-X, 37.6, ZB + 1], [-X, 37.6, ZB], [-15.2, 36, 3.5], [-15, 26, 4.5], [-14.4, 19, 5.5], [-12.6, 15, 6.5], [-12.4, 9, 6.8], [-11, 5.5, 7]], TR, M.copper, 200);
+  add(new THREE.CylinderGeometry(1.0, 1.0, 3.2, 20), M.brass, -11, 3.6, 7);
+  add(new THREE.BoxGeometry(2.6, 1.3, 1.6), M.brass, -11, 4.2, 8.4);
+  add(new THREE.CylinderGeometry(0.85, 0.85, 3.6, 6), M.brass, -11, 0.2, 7);
+
+  // Entrada de agua fría (derecha) con sensor de flujo
+  pipe([[X, 25.2, ZB + 1], [X, 25.2, ZB], [15.2, 23, 3.5], [14.8, 17, 5.5], [13, 13.5, 6.6], [12.6, 10.6, 7]], TR, M.copper, 180);
+  add(new THREE.CylinderGeometry(1.4, 1.4, 5, 24), M.dark, 12.6, 7.4, 7);
+  add(new THREE.BoxGeometry(1.6, 1.6, 1.4), M.dark, 11.2, 8, 7.4);
+  add(new THREE.CylinderGeometry(1.0, 1.0, 2.2, 20), M.brass, 12.6, 4, 7);
+  add(new THREE.BoxGeometry(2.4, 2.0, 2.4), M.brass, 12.6, 2.2, 7);
+  add(new THREE.CylinderGeometry(0.85, 0.85, 3.4, 6), M.brass, 12.6, -0.6, 7);
+
+  // Quemador: barras de aluminio con ranuras
+  const burner = new THREE.Group();
+  const bBody = new THREE.Mesh(new THREE.BoxGeometry(24, 2.6, 9.5), M.burner); burner.add(bBody);
+  for (let i = 0; i < 13; i++) {
+    const fin = new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.9, 9.7), M.alu);
+    fin.position.x = -11 + i * (22 / 12); burner.add(fin);
+  }
+  const manifold = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.75, 24, 18), M.alu);
+  manifold.rotation.z = Math.PI / 2; manifold.position.set(0, -1.5, 5.4); burner.add(manifold);
+  burner.position.set(0, 18.8, 7); scene.add(sh(burner));
+  // Clips de alambre
+  [-9, -4, 4, 9].forEach(x => pipe([[x, 17, 12.2], [x, 18.8, 12.4], [x, 20.5, 12.2]], 0.08, M.alu, 20, 6));
+
+  // Llamas (se ven al encender)
+  const flames = new THREE.Group();
+  const flameMat = new THREE.MeshBasicMaterial({ color: '#4aa3ff', transparent: true, opacity: 0.75, depthWrite: false });
+  const coreMat = new THREE.MeshBasicMaterial({ color: '#bfe1ff', transparent: true, opacity: 0.9, depthWrite: false });
+  for (let i = 0; i < 12; i++) for (let j = 0; j < 3; j++) {
+    const f = new THREE.Mesh(new THREE.ConeGeometry(0.45, 2.0, 10), flameMat);
+    const c = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.9, 8), coreMat); c.position.y = -0.5;
+    const g = new THREE.Group(); g.add(f, c);
+    g.position.set(-10.1 + i * (22 / 12), 21.2, 4.2 + j * 2.8);
+    g.userData.seed = Math.random() * 10;
+    flames.add(g);
+  }
+  flames.visible = false; scene.add(flames);
+
+  // Electrodos de encendido
+  [-1.8, 1.8].forEach(x => {
+    add(new THREE.CylinderGeometry(0.42, 0.42, 3, 16), M.ceramic, x, 21.4, 11.4);
+    add(new THREE.CylinderGeometry(0.08, 0.08, 1.4, 8), M.alu, x, 23.5, 11.2);
+    pipe([[x, 19.9, 11.4], [x * 1.4, 17.5, 12.2], [x * 0.8, 15.6, 12.4]], 0.16, M.dark, 30, 8);
+  });
+  add(new THREE.BoxGeometry(5.5, 0.6, 1.2), M.alu, 0, 20.2, 11.4);
+
+  // Válvula de gas y módulo de control
+  add(new THREE.BoxGeometry(9.5, 13, 8.5), M.steelBox, 0, 8.3, 7.5);
+  add(new THREE.BoxGeometry(10.5, 1.0, 9.5), M.steelBox, 0, 15.3, 7.5);
+  add(new THREE.CylinderGeometry(0.9, 0.9, 2.6, 18), M.brass, 0, 16.5, 7.5);
+  // Panel frontal negro con pantalla y botones
+  function panelTex() {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 320;
+    const g = c.getContext('2d');
+    g.fillStyle = '#121315'; g.fillRect(0, 0, 256, 320);
+    g.strokeStyle = '#6d747c'; g.lineWidth = 4; g.strokeRect(84, 70, 88, 88);
+    g.fillStyle = '#9aa3ad'; g.font = '600 40px Arial, sans-serif'; g.textAlign = 'center';
+    g.fillText('○', 70, 232); g.fillText('+', 128, 234); g.fillText('−', 186, 232);
+    const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; return t;
+  }
+  const front = new THREE.Mesh(new THREE.PlaneGeometry(8, 10), new THREE.MeshStandardMaterial({ map: panelTex(), roughness: 0.25, metalness: 0.3 }));
+  front.position.set(0, 8.6, 11.8); scene.add(front);
+  // Soporte inferior y entrada de gas
+  add(new THREE.BoxGeometry(7, 0.4, 3), M.steelBox, 0, 1.6, 9.5);
+  add(new THREE.CylinderGeometry(1.0, 1.0, 3.2, 20), M.brass, 0, 0, 7.5);
+  add(new THREE.CylinderGeometry(0.9, 0.9, 2.6, 6), M.brass, 0, -2.6, 7.5);
+  add(new THREE.CylinderGeometry(0.7, 0.7, 2.4, 16), M.brass, 3.2, 0.4, 7.5);
+
+  // Electrónica y arnés (izquierda)
+  add(new THREE.BoxGeometry(5.5, 7, 3.6), M.white, -9.2, 11, 2.4);
+  [[M.red, 0], [M.dark, 0.3], [M.white, 0.6]].forEach(([m, o]) => {
+    pipe([[-9 + o, 7.4, 3], [-10.5 + o, 5, 5.5], [-8 + o, 3, 6], [-5.2, 4 + o, 6]], 0.14, m, 50, 6);
+  });
+
+  // Cables del termostato (derecha)
+  pipe([[15.6, 47, 2], [17.2, 43, 2.6], [16.2, 39, 3], [17.4, 35, 2.4], [15.8, 30, 2.6]], 0.11, M.red, 80, 6);
+  pipe([[15.8, 46, 2.4], [17.6, 42, 2.2], [16.6, 38, 3.2], [17.8, 34, 2.8], [16.2, 29.5, 3]], 0.11, M.red, 80, 6);
+  pipe([[15.8, 30, 2.8], [16.2, 22, 4.6], [15.6, 14, 5.2], [14.2, 9, 6.2]], 0.2, M.white, 80, 8);
+
+  // Etiquetas
+  const tags = [
+    { t: 'Salida de gases', p: [0, 58.5, 7.5] },
+    { t: 'Cortatiro / campana', p: [-14, 50, 15] },
+    { t: 'Intercambiador de calor', p: [0, 31, 12.8] },
+    { t: 'Serpentín de agua', p: [-14.5, 34, 13.5] },
+    { t: 'Quemador', p: [-10, 18.8, 12] },
+    { t: 'Electrodos de encendido', p: [1.8, 24.4, 11.2] },
+    { t: 'Válvula de gas y control', p: [4.8, 12, 12] },
+    { t: 'Entrada de gas', p: [0, -3.6, 8] },
+    { t: 'Salida agua caliente', p: [-11, -1.6, 7.5] },
+    { t: 'Entrada agua fría', p: [12.6, -2.4, 7.5] },
+    { t: 'Sensor de flujo', p: [14, 8, 8.4] },
+    { t: 'Termostato (cables)', p: [17.6, 40, 2.6] }
+  ].map(o => {
+    const el = document.createElement('div'); el.className = 'tag';
+    const s = document.createElement('span'); s.textContent = o.t; el.appendChild(s);
+    document.getElementById('labels').appendChild(el);
+    return Object.assign(o, { el, v: new THREE.Vector3(...o.p) });
+  });
+
+  // UI
+  const btnSpin = document.getElementById('btnSpin');
+  function setSpin(on) { controls.autoRotate = on; btnSpin.setAttribute('aria-pressed', String(on)); btnSpin.textContent = on ? 'Girando' : 'Girar'; }
+  setSpin(controls.autoRotate);
+  btnSpin.addEventListener('click', () => setSpin(!controls.autoRotate));
+
+  const btnFire = document.getElementById('btnFire');
+  btnFire.addEventListener('click', () => {
+    flames.visible = !flames.visible;
+    flameLight.intensity = flames.visible ? 2.2 : 0;
+    btnFire.setAttribute('aria-pressed', String(flames.visible));
+    btnFire.textContent = flames.visible ? 'Apagar' : 'Encender';
+  });
+
+  let tween = null;
+  function goTo(pos) { setSpin(false); tween = { from: camera.position.clone(), to: pos.clone(), t: 0 }; }
+  document.getElementById('btnFront').addEventListener('click', () => goTo(new THREE.Vector3(0, 28, 98)));
+  document.getElementById('btnSide').addEventListener('click', () => goTo(new THREE.Vector3(96, 30, 8)));
+
+  const labelsBox = document.getElementById('labels');
+  const btnLabels = document.getElementById('btnLabels');
+  btnLabels.addEventListener('click', () => {
+    labelsBox.hidden = !labelsBox.hidden;
+    btnLabels.setAttribute('aria-pressed', String(!labelsBox.hidden));
+  });
+
+  function resize() {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.fov = w < 600 ? 50 : 36;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const tmp = new THREE.Vector3();
+  const clock = new THREE.Clock();
+  function frame() {
+    const dt = Math.min(clock.getDelta(), 0.05);
+    const t = clock.elapsedTime;
+    if (flames.visible) {
+      flames.children.forEach(g => {
+        const k = reduceMotion ? 1 : 0.85 + 0.25 * Math.sin(t * 14 + g.userData.seed * 3) * Math.sin(t * 7.3 + g.userData.seed);
+        g.scale.set(1, k, 1);
+      });
+      if (!reduceMotion) flameLight.intensity = 2.0 + 0.4 * Math.sin(t * 11);
+    }
+    if (tween) {
+      tween.t = Math.min(1, tween.t + dt * 1.6);
+      const e = 1 - Math.pow(1 - tween.t, 3);
+      camera.position.lerpVectors(tween.from, tween.to, e);
+      if (tween.t >= 1) tween = null;
+    }
+    controls.update();
+    renderer.render(scene, camera);
+    if (!labelsBox.hidden) {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      tags.forEach(o => {
+        tmp.copy(o.v).project(camera);
+        o.el.style.display = tmp.z < 1 ? 'flex' : 'none';
+        o.el.style.left = ((tmp.x + 1) / 2 * w) + 'px';
+        o.el.style.top = ((1 - tmp.y) / 2 * h) + 'px';
+      });
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body></html>
