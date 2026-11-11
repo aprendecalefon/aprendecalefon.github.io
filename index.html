@@ -249,6 +249,68 @@ footer.site{font-size:14px}.mbar small{font-size:13px}
 .wa-float{position:fixed;right:18px;bottom:24px;z-index:40;display:inline-flex;align-items:center;gap:9px;background:#25d366;color:#04210f;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:14px 18px;font-weight:800;font-size:15px;line-height:1.2;text-decoration:none;box-shadow:0 12px 30px rgba(37,211,102,.4)}
 .wa-float:hover{filter:brightness(1.08) drop-shadow(0 5px 9px rgba(37,211,102,.38))}
 .wa-float:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ===== Mejoras: cuenta regresiva, ruta, opiniones, comparación ===== */
+.topbar{background:linear-gradient(90deg,#e11d2e,#ff7a1a);color:#fff;text-align:center;font-size:14px;font-weight:700;padding:7px 12px;line-height:1.3}
+.topbar b{font-variant-numeric:tabular-nums;background:rgba(0,0,0,.22);border-radius:6px;padding:2px 7px;margin-left:4px;white-space:nowrap}
+.cd{display:flex;gap:8px;margin:12px 0 4px}
+.cd div{background:var(--navy);color:#fff;border-radius:10px;min-width:62px;padding:8px 6px;text-align:center}
+.cd b{display:block;font:400 30px/1 var(--head);font-variant-numeric:tabular-nums}
+.cd span{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.75}
+.cd-ended .cd,.cd-ended .topbar,.cd-ended .mbar-cd{display:none}
+.mbar-cd{color:var(--orange2)!important;font-weight:700}
+
+.route-toggle{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px;margin-top:26px;gap:4px;flex-wrap:wrap}
+.route-toggle button{border:0;background:transparent;color:var(--muted);font:700 15px var(--body);padding:11px 20px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+.route-toggle button.on{background:var(--orange);color:#1a0b00}
+.route{position:relative;list-style:none;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.route::before{content:"";position:absolute;top:27px;left:8%;right:8%;height:4px;border-radius:4px;background:var(--line)}
+.route::after{content:"";position:absolute;top:27px;left:8%;height:4px;border-radius:4px;width:var(--fill,0%);max-width:84%;background:linear-gradient(90deg,var(--orange2),var(--orange));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.route li{position:relative;z-index:1;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+.route.show li{opacity:1;transform:none}
+.route li .n{width:58px;height:58px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--navy);border:3px solid var(--orange);font:400 26px/1 var(--head);color:var(--orange2);box-shadow:0 0 0 6px rgba(255,122,26,.12)}
+.route li h3{font-size:17px;margin-bottom:6px}
+.route li p{color:var(--muted);font-size:14px;margin:0 0 10px}
+.route li button{background:transparent;border:1px solid var(--line);color:var(--orange2);border-radius:999px;padding:6px 12px;font:700 13px var(--body);cursor:pointer}
+.route li button:hover{border-color:var(--orange)}
+@media(max-width:860px){
+  .route{grid-template-columns:1fr;gap:0;padding-left:8px}
+  .route::before,.route::after{top:10px;bottom:10px;left:36px;right:auto;width:4px;height:auto}
+  .route::after{height:var(--fill,0%);max-height:calc(100% - 20px);width:4px;max-width:none;transition:height 1.6s cubic-bezier(.2,.8,.2,1)}
+  .route li{display:grid;grid-template-columns:58px 1fr;gap:4px 16px;text-align:left;padding:0 0 22px}
+  .route li .n{grid-row:span 3;margin:0}
+  .route li button{justify-self:start}
+}
+
+.reviews{display:flex;gap:18px;margin-top:30px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.reviews::-webkit-scrollbar{display:none}
+.review{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.review .ph{border-radius:12px;overflow:hidden;background:#0b141a}
+.review .ph img{width:100%;height:auto}
+.review q{font-weight:700;font-size:17px;quotes:"“" "”"}
+.review small{color:var(--muted);font-size:14px}
+.stars{color:var(--orange2);letter-spacing:2px;font-size:15px}
+.rev-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.rev-dots button{width:9px;height:9px;border-radius:50%;border:0;background:var(--line);padding:0;cursor:pointer}
+.rev-dots button.on{background:var(--orange);width:24px;border-radius:5px}
+.rev-note{text-align:center;color:var(--muted);font-size:13px;margin-top:10px}
+@media(max-width:860px){.review{flex-basis:78%}}
+
+.compare{width:100%;border-collapse:separate;border-spacing:0;margin-top:30px;font-size:15px}
+.compare th,.compare td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:center}
+.compare th:first-child,.compare td:first-child{text-align:left;color:var(--muted);font-weight:600}
+.compare thead th{font:400 20px/1.1 var(--head);letter-spacing:.5px;text-transform:uppercase;color:var(--text)}
+.compare .us{background:rgba(255,122,26,.10);border-left:2px solid var(--orange);border-right:2px solid var(--orange)}
+.compare thead .us{background:var(--orange);color:#1a0b00;border-radius:14px 14px 0 0;border-top:2px solid var(--orange)}
+.compare tbody tr:last-child .us{border-bottom:2px solid var(--orange);border-radius:0 0 14px 14px}
+.compare .y{color:var(--green);font-weight:800}
+.compare .x{color:#ff6b6b;font-weight:800}
+.compare .us b{color:var(--orange2)}
+.compare-wrap{overflow-x:auto}
+.compare .sh{display:none}
+section[id]{scroll-margin-top:96px}
+@media(max-width:600px){.tb-long{display:none}.compare .sh{display:inline}.compare{font-size:12.5px;table-layout:fixed}.compare th:first-child,.compare td:first-child{width:30%}.compare th,.compare td{padding:10px 5px}.compare thead th{font-size:14px}.compare .us{width:28%}}
+
 @keyframes mockup-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes seal-spin{to{transform:rotate(360deg)}}
 @keyframes price-glow{from{box-shadow:0 0 0 1px rgba(255,122,26,.18),0 12px 30px rgba(255,122,26,.12)}to{box-shadow:0 0 0 4px rgba(255,122,26,.38),0 18px 38px rgba(255,122,26,.24)}}
@@ -275,11 +337,13 @@ main,footer.site{position:relative;z-index:1}
 </div>
 
 <header>
+  <div class="topbar">🔥 <span class="tb-long">Precio de lanzamiento </span><span style="white-space:nowrap">$29.990 termina en</span> <b data-cd="short">—</b></div>
   <div class="wrap">
     <a class="logo" href="#inicio"><img src="assets/aprende-calefon-mark.svg" alt="Logo de Aprende Calefón"><b>APRENDE CALEFÓN</b></a>
     <nav>
-      <a href="#modelo">Modelo 3D</a>
       <a href="#muestras">Muestras</a>
+      <a href="#ruta">Ruta</a>
+      <a href="#opiniones">Opiniones</a>
       <a href="#temario">Temario</a>
       <a href="#precio">Precio</a>
       <a href="#faq">Preguntas</a>
@@ -310,7 +374,7 @@ main,footer.site{position:relative;z-index:1}
     </div>
     <div class="hero-img">
       <div class="seal" aria-label="Pago único, acceso permanente"><span>Pago único<br>Acceso permanente</span></div>
-      <img src="assets/product-mockup.png" alt="Biblioteca Aprende Calefón vista en caja, tablet y teléfono" width="1536" height="1024">
+      <picture><source srcset="assets/product-mockup.webp" type="image/webp"><img src="assets/product-mockup.png" alt="Biblioteca Aprende Calefón vista en caja, tablet y teléfono" width="1536" height="1024" fetchpriority="high"></picture>
     </div>
   </div>
 </section>
@@ -369,6 +433,51 @@ main,footer.site{position:relative;z-index:1}
   </div>
 </section>
 
+
+<!-- Opiniones reales de alumnos -->
+<section id="opiniones" style="background:var(--navy2)">
+  <div class="wrap">
+    <span class="eyebrow">Alumnos de Aprende Calefón</span>
+    <h2>Lo que <em>reciben</em> al entrar</h2>
+    <p class="lead">Capturas reales de WhatsApp de alumnos que ya tienen acceso. Ocultamos sus números por privacidad.</p>
+    <div class="reviews" id="reviews">
+      <article class="review">
+        <div class="ph"><img src="assets/alumnos/alumno1.webp" alt="Captura de WhatsApp: alumno viendo la clase de uso del multitester" loading="lazy" width="714" height="1599"></div>
+        <div class="stars">★★★★★</div>
+        <q>Se ve súper… ¡Muchas gracias!</q>
+        <small>Alumno estudiando la clase de multitester</small>
+      </article>
+      <article class="review">
+        <div class="ph"><img src="assets/alumnos/alumno2.webp" alt="Captura de WhatsApp: alumno mostrando las carpetas del curso en su celular" loading="lazy" width="714" height="1599"></div>
+        <div class="stars">★★★★★</div>
+        <q>Ya, gracias, todo en orden</q>
+        <small>Acceso confirmado desde el celular</small>
+      </article>
+      <article class="review">
+        <div class="ph"><img src="assets/alumnos/alumno3.webp" alt="Captura de WhatsApp: alumno confirmando que recibió la biblioteca" loading="lazy" width="714" height="1599"></div>
+        <div class="stars">★★★★★</div>
+        <q>Ese es</q>
+        <small>Biblioteca completa recibida al instante</small>
+      </article>
+    </div>
+    <div class="rev-dots" id="revDots"></div>
+  </div>
+</section>
+
+<!-- Ruta de aprendizaje -->
+<section id="ruta">
+  <div class="wrap">
+    <span class="eyebrow">Tu ruta de aprendizaje</span>
+    <h2>¿Desde dónde <em>partes?</em></h2>
+    <p class="lead">Elige tu punto de partida y te mostramos en qué orden recorrer la biblioteca.</p>
+    <div class="route-toggle" role="tablist">
+      <button type="button" class="on" data-r="cero" role="tab" aria-selected="true">🔰 Parto desde cero</button>
+      <button type="button" data-r="exp" role="tab" aria-selected="false">🔧 Ya tengo experiencia</button>
+    </div>
+    <ol class="route" id="route"></ol>
+  </div>
+</section>
+
 <!-- Temario: títulos visibles sin tener que abrir nada -->
 <section id="temario" style="background:var(--navy2)">
   <div class="wrap">
@@ -399,6 +508,28 @@ main,footer.site{position:relative;z-index:1}
   </div>
 </section>
 
+
+<!-- Comparación de valor -->
+<section id="comparar">
+  <div class="wrap">
+    <span class="eyebrow">Compara antes de decidir</span>
+    <h2>¿Por qué <em>Aprende Calefón?</em></h2>
+    <div class="compare-wrap">
+    <table class="compare">
+      <thead><tr><th></th><th>Curso presencial</th><th><span class="tb-long">Videos sueltos en internet</span><span class="sh">Videos sueltos</span></th><th class="us">Aprende Calefón</th></tr></thead>
+      <tbody>
+        <tr><td>Costo</td><td>Alto, más traslados</td><td>Gratis</td><td class="us"><b>$29.990 pago único</b></td></tr>
+        <tr><td>Horario</td><td>Fijo</td><td>Cuando quieras</td><td class="us">Cuando quieras</td></tr>
+        <tr><td>Contenido ordenado de básico a avanzado</td><td class="y">✓</td><td class="x">✗</td><td class="us y">✓ 42 temas</td></tr>
+        <tr><td>Manuales y material de marcas</td><td>Depende</td><td class="x">✗</td><td class="us y">✓ 7 marcas</td></tr>
+        <tr><td>Comunidad para consultar tus casos</td><td class="x">✗</td><td class="x">✗</td><td class="us y">✓ +200 técnicos</td></tr>
+        <tr><td>Acceso al material</td><td>Termina con el curso</td><td>Puede desaparecer</td><td class="us"><b>De por vida</b></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
 <!-- Precio y pago -->
 <section id="precio" style="background:var(--navy2)">
   <div class="wrap">
@@ -410,6 +541,7 @@ main,footer.site{position:relative;z-index:1}
         <p class="offer-old"><s>$59.990 CLP</s> <span class="discount">50% DCTO</span></p>
         <div class="big">$29.990 <small>CLP</small></div>
         <p class="offer-deadline">Oferta válida hasta el 15 de noviembre</p>
+        <div class="cd" aria-label="Tiempo restante de la oferta"><div><b data-cd="d">0</b><span>días</span></div><div><b data-cd="h">00</b><span>horas</span></div><div><b data-cd="m">00</b><span>min</span></div><div><b data-cd="s">00</b><span>seg</span></div></div>
         <p class="muted">Pago único · acceso permanente · sin mensualidades</p>
         <ul>
           <li>42 temas en video y PDF</li>
@@ -475,7 +607,7 @@ main,footer.site{position:relative;z-index:1}
 <a class="btn wa-float" href="https://wa.me/56993992990?text=Hola%2C%20tengo%20una%20duda%20sobre%20Aprende%20Calef%C3%B3n" target="_blank" rel="noopener" aria-label="¿Dudas? Escríbenos por WhatsApp">💬 <span>¿Dudas? Escríbenos</span></a>
 
 <div class="mbar">
-  <div><b>$29.990</b><small>Pago único · acceso permanente</small></div>
+  <div><b>$29.990</b><small class="mbar-cd">Termina en <span data-cd="short">—</span></small><small class="mbar-sub">Pago único · acceso de por vida</small></div>
   <a class="btn btn-buy" href="#precio">Quiero acceder</a>
 </div>
 
@@ -530,5 +662,69 @@ render();
   counters.forEach(el=>observer.observe(el));
 })();
 </script>
+
+<script>
+// Cuenta regresiva al cierre del precio de lanzamiento (15 nov, 23:59 hora de Chile)
+(()=>{
+  const END=new Date('2026-11-15T23:59:59-03:00').getTime();
+  const pad=n=>String(n).padStart(2,'0');
+  const tick=()=>{
+    let ms=END-Date.now();
+    if(ms<=0){document.documentElement.classList.add('cd-ended');return;}
+    const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+    document.querySelectorAll('[data-cd]').forEach(el=>{const k=el.dataset.cd;
+      el.textContent=k==='d'?d:k==='h'?pad(h):k==='m'?pad(m):k==='s'?pad(s):(d>0?`${d}d `:'')+`${pad(h)}h ${pad(m)}m ${pad(s)}s`;});
+    setTimeout(tick,1000-(Date.now()%1000));
+  };
+  tick();
+  const mb=document.querySelector('.mbar-sub'); if(mb) mb.style.display='none';
+  if(document.documentElement.classList.contains('cd-ended')&&mb) mb.style.display='';
+})();
+// Ruta de aprendizaje
+(()=>{
+  const R={
+    cero:[["Bases y mediciones","Electricidad, multímetro y detección de llama.","TIRO NATURAL","Bases y mediciones"],
+          ["Agua y gas","Cómo funciona el calefón por dentro y sus conjuntos.","TIRO NATURAL","Conjuntos de agua y gas"],
+          ["Tiro forzado","Equipos estancos, presostato y mantención.","TIRO FORZADO","Funcionamiento y mantenimiento"],
+          ["Fallas y encendido","Placa, transformador y códigos de error.","TIRO FORZADO","Casos eléctricos y de encendido"],
+          ["Instalación y conversión","Elegir, instalar y cambiar de gas.","INSTALACION",""]],
+    exp:[["Códigos de error","Casos con E1, E2, E3 y 13 en distintas marcas.","TIRO FORZADO","Casos eléctricos y de encendido"],
+         ["Equipos modernos","Automodulantes, estancos y línea Therm.","TIRO FORZADO","Funcionamiento y mantenimiento"],
+         ["Ionización y encendido","Fallas en equipos ionizados y electroválvulas.","Nuevos Subidos",""],
+         ["Conversión de gas","Ajustes de placa en tiro natural y forzado.","CONVERSION",""],
+         ["Casos en la comunidad","Resuelve tus casos con +200 técnicos.","",""]]
+  };
+  const el=document.getElementById('route');
+  const count=(c,s)=>c?items.filter(i=>i.cat===c&&(!s||i.sub===s)).length:0;
+  let mode='cero';
+  const draw=()=>{
+    el.classList.remove('show'); el.style.setProperty('--fill','0%');
+    el.innerHTML=R[mode].map(([t,p,c,s],i)=>`<li style="transition-delay:${i*.12}s"><div class="n">${i+1}</div><h3>${t}</h3><p>${p}${c?` · <b>${count(c,s)} temas</b>`:''}</p>${c?`<button type="button" data-c="${c}">Ver temas →</button>`:`<button type="button" data-wa="1">Ver precio →</button>`}</li>`).join('');
+    el.querySelectorAll('button[data-c]').forEach(b=>b.onclick=()=>{st.cat=b.dataset.c;st.q='';document.getElementById('q').value='';render();document.getElementById('temario').scrollIntoView({behavior:'smooth'});});
+    el.querySelectorAll('button[data-wa]').forEach(b=>b.onclick=()=>document.getElementById('precio').scrollIntoView({behavior:'smooth'}));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(seen){el.classList.add('show');el.style.setProperty('--fill','100%');} }));
+  };
+  let seen=false;
+  new IntersectionObserver((e,o)=>{ if(e[0].isIntersecting){seen=true;el.classList.add('show');el.style.setProperty('--fill','100%');o.disconnect();} },{threshold:.25}).observe(el);
+  document.querySelectorAll('.route-toggle button').forEach(b=>b.onclick=()=>{ mode=b.dataset.r;
+    document.querySelectorAll('.route-toggle button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)}); draw(); });
+  draw();
+})();
+// Carrusel de opiniones (auto-avance en pantallas donde no caben las 3)
+(()=>{
+  const box=document.getElementById('reviews'),dots=document.getElementById('revDots'),cards=[...box.children];
+  dots.innerHTML=cards.map((_,i)=>`<button type="button" aria-label="Ver opinión ${i+1}"></button>`).join('');
+  const db=[...dots.children];
+  const go=i=>box.scrollTo({left:cards[i].offsetLeft-box.offsetLeft,behavior:'smooth'});
+  db.forEach((b,i)=>b.onclick=()=>{go(i);hold=Date.now();});
+  const cur=()=>Math.round(box.scrollLeft/(cards[0].offsetWidth+18));
+  const mark=()=>db.forEach((b,i)=>b.classList.toggle('on',i===Math.min(cur(),cards.length-1)));
+  box.addEventListener('scroll',mark,{passive:true}); mark();
+  let hold=0; box.addEventListener('touchstart',()=>hold=Date.now(),{passive:true});
+  setInterval(()=>{ if(box.scrollWidth<=box.clientWidth+4||Date.now()-hold<6000)return; go((cur()+1)%cards.length); },4000);
+  const fits=()=>{dots.style.display=box.scrollWidth<=box.clientWidth+4?'none':'flex'}; fits(); addEventListener('resize',fits);
+})();
+</script>
+
 </body>
 </html>
