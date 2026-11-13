@@ -311,6 +311,97 @@ footer.site{font-size:14px}.mbar small{font-size:13px}
 section[id]{scroll-margin-top:96px}
 @media(max-width:600px){.tb-long{display:none}.compare .sh{display:inline}.compare{font-size:12.5px;table-layout:fixed}.compare th:first-child,.compare td:first-child{width:30%}.compare th,.compare td{padding:10px 5px}.compare thead th{font-size:14px}.compare .us{width:28%}}
 
+
+/* ===== v4: instructor, lógica animada, biblioteca en celular, bonos, otros países ===== */
+.creator{display:flex;align-items:center;gap:10px;margin:14px 0 0;padding:10px 14px;border-radius:12px;background:rgba(255,122,26,.08);border:1px solid rgba(255,122,26,.35);font-size:15px;font-weight:600;max-width:560px}
+.creator i{font-style:normal;font-size:20px}
+.next-price{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.next-price b{color:var(--text)}
+
+.logic{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px 18px 18px}
+.logic svg{width:100%;height:auto;display:block}
+.logic .pipe-w{stroke-dasharray:6 10;animation:flow 1s linear infinite;animation-play-state:paused}
+.logic.run .pipe-w{animation-play-state:running}
+@keyframes flow{to{stroke-dashoffset:-32}}
+.lg{animation-duration:8s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-play-state:paused}
+.logic.run .lg{animation-play-state:running}
+.lg-water{animation-name:lgWater}
+@keyframes lgWater{0%,3%{opacity:.15}9%,100%{opacity:1}}
+.lg-mem{transform-box:fill-box;transform-origin:center;animation-name:lgMem}
+@keyframes lgMem{0%,9%{transform:translateY(0)}14%,92%{transform:translateY(-6px)}100%{transform:none}}
+.lg-lever{transform-origin:236px 188px;transform-box:view-box;animation-name:lgLever}
+@keyframes lgLever{0%,12%{transform:rotate(0)}18%,92%{transform:rotate(-24deg)}100%{transform:rotate(0)}}
+.lg-wire{stroke-dasharray:200;stroke-dashoffset:200;animation-name:lgWire}
+@keyframes lgWire{0%,18%{stroke-dashoffset:200}26%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:200}}
+.lg-bat{stroke-dasharray:150;stroke-dashoffset:150;animation-name:lgBat}
+@keyframes lgBat{0%,24%{stroke-dashoffset:150}32%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:150}}
+.lg-led{animation-name:lgLed}
+@keyframes lgLed{0%,30%{fill:#244}33%,92%{fill:#3dff8a}100%{fill:#244}}
+.lg-wire2{stroke-dasharray:120;stroke-dashoffset:120;animation-name:lgW2}
+@keyframes lgW2{0%,33%{stroke-dashoffset:120}38%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:120}}
+.lg-spark{opacity:0;animation-name:lgSpark}
+@keyframes lgSpark{0%,38%{opacity:0}39%{opacity:1}41%{opacity:.2}43%{opacity:1}45%{opacity:.1}47%{opacity:1}49%{opacity:.2}51%{opacity:1}56%,100%{opacity:0}}
+.lg-wire3{stroke-dasharray:260;stroke-dashoffset:260;animation-name:lgW3}
+@keyframes lgW3{0%,44%{stroke-dashoffset:260}50%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:260}}
+.lg-valve{animation-name:lgValve}
+@keyframes lgValve{0%,48%{fill:#6b5a2e}52%,92%{fill:#ffc23d}100%{fill:#6b5a2e}}
+.lg-gas{stroke-dasharray:5 9;opacity:0;animation-name:lgGas}
+@keyframes lgGas{0%,50%{opacity:0;stroke-dashoffset:0}53%{opacity:1}92%{opacity:1;stroke-dashoffset:-140}100%{opacity:0;stroke-dashoffset:-150}}
+.lg-flame{transform-origin:center bottom;transform-box:fill-box;transform:scaleY(0);animation-name:lgFlame}
+@keyframes lgFlame{0%,55%{transform:scaleY(0)}62%{transform:scaleY(1.15)}68%,90%{transform:scaleY(1)}96%,100%{transform:scaleY(0)}}
+.lg-sense{stroke-dasharray:190;stroke-dashoffset:190;animation-name:lgSense}
+@keyframes lgSense{0%,66%{stroke-dashoffset:190}74%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:190}}
+.lg-ok{opacity:0;transform-box:fill-box;transform-origin:center;animation-name:lgOk}
+@keyframes lgOk{0%,73%{opacity:0;transform:scale(.3)}77%{opacity:1;transform:scale(1.15)}80%,92%{opacity:1;transform:scale(1)}96%,100%{opacity:0}}
+.logic-steps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;font-size:14px;font-weight:700}
+.logic-steps span{padding:8px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:all .3s}
+.logic-steps span.on{background:var(--orange);border-color:var(--orange);color:#1a0b00}
+.logic-steps em{font-style:normal;color:var(--muted);align-self:center}
+
+.lib{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:10px}
+.phone{position:relative;width:min(100%,300px);aspect-ratio:9/18.6;margin:0 auto;background:#0b0b0b;border-radius:40px;padding:10px;box-shadow:0 40px 70px -35px rgba(0,0,0,.7),inset 0 0 0 2px #2a2a2a}
+.phone::before{content:"";position:absolute;top:16px;left:50%;width:76px;height:20px;margin-left:-38px;border-radius:12px;background:#000;z-index:3}
+.screen{position:relative;width:100%;height:100%;border-radius:31px;overflow:hidden;background:#f1f3f4;color:#202124;font-family:Roboto,Arial,sans-serif}
+.dv-top{position:absolute;inset:0 0 auto;z-index:2;background:#f1f3f4;padding:40px 14px 10px}
+.dv-top b{display:block;font-size:15px;font-weight:500;margin-bottom:10px}
+.dv-search{background:#e3e7ea;border-radius:999px;padding:9px 14px;font-size:12px;color:#5f6368}
+.dv-body{position:absolute;left:0;right:0;top:118px;padding:0 12px 20px;animation:dvScroll 14s ease-in-out infinite;animation-play-state:paused}
+.lib.run .dv-body{animation-play-state:running}
+@keyframes dvScroll{0%,12%{transform:translateY(0)}48%,60%{transform:translateY(-52%)}92%,100%{transform:translateY(0)}}
+.dv-h{font-size:12px;color:#5f6368;margin:10px 4px 8px}
+.dv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dv-f{background:#fff;border-radius:10px;padding:10px;font-size:11px;font-weight:500;display:flex;align-items:center;gap:7px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dv-f::before{content:"";width:16px;height:12px;border-radius:2px;background:#5f6368;flex:none}
+.dv-file{background:#fff;border-radius:10px;padding:9px 10px;font-size:11px;display:flex;align-items:center;gap:8px;margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dv-file i{font-style:normal;flex:none;font-size:9px;font-weight:700;color:#fff;border-radius:3px;padding:3px 4px}
+.dv-file i.pdf{background:#ea4335}.dv-file i.mp4{background:#1a73e8}
+.dv-file span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lib-points{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.lib-points li{display:flex;gap:10px;align-items:flex-start;font-size:16px}
+.lib-points li::before{content:"✓";color:var(--green);font-weight:900}
+@media(max-width:860px){.lib{grid-template-columns:1fr}.phone{width:min(78%,280px)}}
+
+.bonus-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.bonus-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.bonus-card .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1px;color:#1a0b00;background:var(--orange);border-radius:999px;padding:5px 10px}
+.bonus-card h3{margin:14px 0 8px;font-size:22px}
+.bonus-card p{margin:0;color:var(--muted)}
+.bonus-card .val{margin-top:12px;font-size:14px;color:var(--muted)}
+.bonus-card .val b{color:var(--green)}
+@media(max-width:760px){.bonus-grid{grid-template-columns:1fr}}
+
+.abroad{margin-top:16px;border:1px dashed var(--line);border-radius:16px;padding:16px 18px}
+.abroad small{display:block;font-size:12px;font-weight:800;letter-spacing:1px;color:var(--muted)}
+.abroad b{display:block;margin:6px 0 4px;font-size:18px}
+.abroad p{margin:0 0 12px;font-size:14px;color:var(--muted)}
+.abroad a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--text);color:var(--text);border-radius:12px;padding:10px 14px;font-weight:700;text-decoration:none}
+.abroad a:hover{background:var(--text);color:var(--navy)}
+.logic svg{max-width:760px;margin:0 auto}
+@media(max-width:600px){.logic svg text{font-size:19px}.logic{padding:16px 8px 14px}.logic-steps{font-size:12.5px}.logic-steps span{padding:6px 9px}}
+.offer .next-price{color:#5d5b56}.offer .next-price b{color:#1d1d1b}
+.offer .abroad{border-color:#cfc9bd}.offer .abroad small,.offer .abroad p{color:#5d5b56}.offer .abroad b{color:#1d1d1b}
+.offer .abroad a{border-color:#1d1d1b;color:#1d1d1b}.offer .abroad a:hover{background:#1d1d1b;color:#fff}
+
 @keyframes mockup-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes seal-spin{to{transform:rotate(360deg)}}
 @keyframes price-glow{from{box-shadow:0 0 0 1px rgba(255,122,26,.18),0 12px 30px rgba(255,122,26,.12)}to{box-shadow:0 0 0 4px rgba(255,122,26,.38),0 18px 38px rgba(255,122,26,.24)}}
@@ -321,6 +412,12 @@ main,footer.site{position:relative;z-index:1}
 @keyframes button-shine{0%,65%{left:-80%}100%{left:130%}}
 @keyframes button-pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.18)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
 </style>
+<!-- Meta Pixel: reemplaza TU_PIXEL_ID por el ID de tu píxel y quita los comentarios para activarlo
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{content_name:'Aprende Calefón',value:29990,currency:'CLP'});
+</script>
+-->
 </head>
 <body>
 
@@ -360,6 +457,7 @@ main,footer.site{position:relative;z-index:1}
       <span class="eyebrow">Formación técnica en calefones</span>
       <h1>Aprende desde cero.<br><span>Refuerza tu experiencia.</span></h1>
       <p class="lead">Biblioteca de cursos en video y PDF sobre diagnóstico, reparación, instalación y conversión, más una comunidad privada de WhatsApp donde técnicos resuelven casos reales.</p>
+      <p class="creator"><i>🛡️</i>Seleccionado y organizado por un instalador de gas autorizado SEC Clase 3, con +15 años en terreno.</p>
       <div class="stats">
         <div class="stat"><b class="count-up" data-count="42">42</b><span>temas de estudio</span></div>
         <div class="stat"><b class="count-up" data-count="7">7</b><span>marcas cubiertas</span></div>
@@ -367,7 +465,7 @@ main,footer.site{position:relative;z-index:1}
         <div class="stat"><b class="count-up" data-count="200" data-prefix="+">+200</b><span>técnicos en la comunidad</span></div>
       </div>
       <div class="price-row">
-        <div class="price"><small>PRECIO DE LANZAMIENTO</small><span class="discount">50% DCTO</span><br><b>$29.990</b> CLP <s>antes $59.990</s><span class="price-deadline">Oferta válida hasta el 15 de noviembre</span></div>
+        <div class="price"><small>PRECIO DE LANZAMIENTO</small><span class="discount">50% DCTO</span><br><b>$29.990</b> CLP <s>antes $59.990</s><span class="price-deadline">Oferta válida hasta el 15 de noviembre · luego vuelve a $59.990</span></div>
         <a class="btn btn-buy" href="#precio">Quiero acceder →</a>
       </div>
       <div class="reassure"><span>Pago único</span><span>Acceso permanente</span><span>Nuevos materiales sin costo</span></div>
@@ -433,6 +531,93 @@ main,footer.site{position:relative;z-index:1}
   </div>
 </section>
 
+
+
+<!-- Biblioteca vista en el celular -->
+<section id="biblioteca">
+  <div class="wrap lib" id="lib">
+    <div>
+      <span class="eyebrow">Así la recibes</span>
+      <h2>Tu biblioteca, <em>en el bolsillo</em></h2>
+      <p class="lead">Apenas confirmamos tu pago, te llega el acceso a una carpeta de Google Drive ordenada por área. La abres desde el celular o el computador, cuando quieras.</p>
+      <ul class="lib-points">
+        <li>Carpetas por área: tiro natural, tiro forzado, instalación y conversión</li>
+        <li>Videos y PDF listos para ver o descargar</li>
+        <li>Una carpeta de “Nuevos subidos” con el material que vamos agregando</li>
+        <li>La encuentras siempre en “Compartidos conmigo”</li>
+      </ul>
+    </div>
+    <div class="phone" aria-label="Vista de la biblioteca en Google Drive desde un celular">
+      <div class="screen">
+        <div class="dv-top"><b>🔥 Aprende Calefón</b><div class="dv-search">Buscar en la carpeta</div></div>
+        <div class="dv-body" id="dvBody">
+          <div class="dv-h">Carpetas</div>
+          <div class="dv-grid"><div class="dv-f">TIRO NATURAL</div><div class="dv-f">TIRO FORZADO</div><div class="dv-f">INSTALACIÓN</div><div class="dv-f">CONVERSIÓN</div><div class="dv-f">Nuevos subidos</div></div>
+          <div class="dv-h">Archivos</div>
+          <div id="dvFiles"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lógica de funcionamiento animada -->
+<section id="logica" style="background:var(--navy2)">
+  <div class="wrap">
+    <span class="eyebrow">Entiende, no memorices</span>
+    <h2>Aprende la <em>lógica</em> del calefón</h2>
+    <p class="lead">Cuando entiendes en qué orden funciona cada pieza, encuentras la falla mucho más rápido. Así enciende un calefón ionizado:</p>
+    <div class="logic" id="logic">
+      <svg viewBox="0 0 720 340" role="img" aria-label="Animación: el agua mueve la membrana y el microswitch, las pilas alimentan la placa, salta la chispa, se abre la válvula de gas, enciende el quemador y el sensor de llama confirma el encendido">
+        <defs><linearGradient id="lgF" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#bfe3ff"/><stop offset=".5" stop-color="#4da8ff"/><stop offset="1" stop-color="#ff9a3d" stop-opacity=".9"/></linearGradient>
+        <linearGradient id="lgCu" x1="0" x2="1"><stop offset="0" stop-color="#b8612e"/><stop offset=".5" stop-color="#e59a5c"/><stop offset="1" stop-color="#9c4d22"/></linearGradient></defs>
+        <g font-family="inherit" font-size="12" font-weight="700" fill="#9fb0c8">
+          <text x="34" y="30">CAJA DE PILAS</text><text x="300" y="30">PLACA DE ENCENDIDO</text><text x="20" y="268">ENTRADA DE AGUA</text><text x="196" y="334">CUERPO DE AGUA</text><text x="196" y="160">MICROSWITCH</text><text x="430" y="92">INTERCAMBIADOR</text><text x="420" y="176">BUJÍA</text><text x="560" y="176">SENSOR DE LLAMA</text><text x="560" y="334">VÁLVULA DE GAS</text><text x="406" y="290">QUEMADOR</text>
+        </g>
+        <!-- pilas -->
+        <rect x="34" y="40" width="120" height="58" rx="10" fill="#1d2a3d" stroke="#4a6488"/>
+        <g><rect x="48" y="54" width="44" height="30" rx="4" fill="#d9a520"/><rect x="92" y="62" width="5" height="14" rx="1" fill="#bbb"/><rect x="100" y="54" width="44" height="30" rx="4" fill="#d9a520"/><rect x="144" y="62" width="5" height="14" rx="1" fill="#bbb"/></g>
+        <path d="M154 70 H300" stroke="#3a4658" stroke-width="3"/>
+        <path class="lg lg-bat" d="M154 70 H300" stroke="#ffd36a" stroke-width="3" fill="none"/>
+        <!-- placa -->
+        <rect x="300" y="40" width="120" height="58" rx="10" fill="#14361f" stroke="#2f8f4e"/>
+        <g fill="#2f8f4e"><rect x="314" y="52" width="18" height="10" rx="2"/><rect x="340" y="52" width="26" height="10" rx="2"/><rect x="314" y="72" width="40" height="10" rx="2"/><rect x="380" y="62" width="24" height="22" rx="3"/></g>
+        <circle class="lg lg-led" cx="406" cy="50" r="4" fill="#244"/>
+        <!-- agua -->
+        <path class="lg lg-water pipe-w" d="M20 280H200" stroke="#4da8ff" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <rect x="200" y="240" width="84" height="80" rx="12" fill="#2a3a52" stroke="#4a6488"/>
+        <circle cx="242" cy="280" r="22" fill="#111"/><circle class="lg lg-mem" cx="242" cy="280" r="8" fill="#e8e8e8"/>
+        <path d="M284 280 H330 V250" stroke="#4da8ff" stroke-width="8" fill="none" opacity=".35"/>
+        <rect x="222" y="170" width="40" height="26" rx="5" fill="#1e1e1e" stroke="#555"/>
+        <path d="M242 196 V240" stroke="#8a97a8" stroke-width="4"/>
+        <path class="lg lg-lever" d="M236 188 L262 168" stroke="#cfd6df" stroke-width="5" stroke-linecap="round"/>
+        <!-- cables -->
+        <path d="M262 182 C300 182 300 98 330 98" stroke="#3a4658" stroke-width="3" fill="none"/>
+        <path class="lg lg-wire" d="M262 182 C300 182 300 98 330 98" stroke="#ff5d4d" stroke-width="3" fill="none"/>
+        <path d="M390 98 C420 120 446 150 446 186 M410 98 C520 110 600 180 620 262" stroke="#3a4658" stroke-width="3" fill="none"/>
+        <path class="lg lg-wire2" d="M390 98 C420 120 446 150 446 186" stroke="#ff5d4d" stroke-width="3" fill="none"/>
+        <path class="lg lg-wire3" d="M410 98 C520 110 600 180 620 262" stroke="#ff5d4d" stroke-width="3" fill="none"/>
+        <path d="M420 92 C480 120 560 140 574 186" stroke="#3a4658" stroke-width="3" fill="none"/>
+        <path class="lg lg-sense" d="M574 186 C560 140 480 120 420 92" stroke="#25d366" stroke-width="3" fill="none"/>
+        <!-- intercambiador -->
+        <rect x="390" y="104" width="230" height="40" rx="8" fill="url(#lgCu)" opacity=".9"/>
+        <g stroke="#7a3a16" stroke-width="2" opacity=".5"><path d="M404 108v32M420 108v32M436 108v32M452 108v32M468 108v32M484 108v32M500 108v32M516 108v32M532 108v32M548 108v32M564 108v32M580 108v32M596 108v32"/></g>
+        <!-- bujía y sensor -->
+        <rect x="440" y="186" width="6" height="30" rx="2" fill="#eee"/><rect x="452" y="186" width="6" height="30" rx="2" fill="#eee"/>
+        <path class="lg lg-spark" d="M446 216 L454 206 L448 206 L456 196" stroke="#fff6a0" stroke-width="3" fill="none" style="filter:drop-shadow(0 0 6px #ffe680)"/>
+        <rect x="571" y="186" width="6" height="34" rx="2" fill="#d8d8d8"/>
+        <g class="lg lg-ok"><circle cx="600" cy="196" r="13" fill="#25d366"/><path d="M593 196l5 5 9-10" stroke="#04210f" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+        <!-- gas -->
+        <rect class="lg lg-valve" x="590" y="262" width="64" height="46" rx="8" fill="#6b5a2e" stroke="#a88a3a"/>
+        <path d="M700 285H654 M590 285H560V252H392" stroke="#5a5040" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path class="lg lg-gas" d="M700 285H654 M590 285H560V252H392" stroke="#ffd36a" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <rect x="384" y="238" width="196" height="16" rx="6" fill="#5b6575"/>
+        <g class="lg lg-flame"><path d="M404 238q8-36 0-54q14 22 8 54zM430 238q8-36 0-54q14 22 8 54zM456 238q8-36 0-54q14 22 8 54zM482 238q8-36 0-54q14 22 8 54zM508 238q8-36 0-54q14 22 8 54zM534 238q8-36 0-54q14 22 8 54zM560 238q8-36 0-54q14 22 8 54z" fill="url(#lgF)"/></g>
+      </svg>
+      <div class="logic-steps" id="logicSteps"><span>💧 Abres el agua</span><em>→</em><span>🔘 Membrana y microswitch</span><em>→</em><span>🔋 Pilas activan la placa</span><em>→</em><span>⚡ Chispa en la bujía</span><em>→</em><span>🟡 Se abre la válvula</span><em>→</em><span>🔥 Enciende el quemador</span><em>→</em><span>📡 Sensor confirma la llama</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- Opiniones reales de alumnos -->
 <section id="opiniones" style="background:var(--navy2)">
@@ -509,6 +694,20 @@ main,footer.site{position:relative;z-index:1}
 </section>
 
 
+
+<!-- Bonos -->
+<section id="bonos">
+  <div class="wrap">
+    <span class="eyebrow">Regalos al inscribirte</span>
+    <h2>Además, te llevas <em>2 bonos</em></h2>
+    <p class="lead">Material práctico para usar desde el primer trabajo.</p>
+    <div class="bonus-grid">
+      <article class="bonus-card"><span class="tag">BONO 1</span><h3>Tabla de códigos de error por marca</h3><p>Los códigos más comunes de los calefones de tiro forzado, qué significan y por dónde empezar a revisar. En PDF, para tenerla en el celular.</p></article>
+      <article class="bonus-card"><span class="tag">BONO 2</span><h3>Guía: cuánto cobrar por cada trabajo</h3><p>Valores de referencia para visitas, mantenciones y reparaciones, y cómo presentar un presupuesto claro al cliente.</p></article>
+    </div>
+  </div>
+</section>
+
 <!-- Comparación de valor -->
 <section id="comparar">
   <div class="wrap">
@@ -541,6 +740,7 @@ main,footer.site{position:relative;z-index:1}
         <p class="offer-old"><s>$59.990 CLP</s> <span class="discount">50% DCTO</span></p>
         <div class="big">$29.990 <small>CLP</small></div>
         <p class="offer-deadline">Oferta válida hasta el 15 de noviembre</p>
+        <p class="next-price">Desde el 16 de noviembre vuelve a <b>$59.990</b>.</p>
         <div class="cd" aria-label="Tiempo restante de la oferta"><div><b data-cd="d">0</b><span>días</span></div><div><b data-cd="h">00</b><span>horas</span></div><div><b data-cd="m">00</b><span>min</span></div><div><b data-cd="s">00</b><span>seg</span></div></div>
         <p class="muted">Pago único · acceso permanente · sin mensualidades</p>
         <ul>
@@ -556,6 +756,7 @@ main,footer.site{position:relative;z-index:1}
           <a class="btn btn-pay" href="https://mpago.la/25EDXe5" target="_blank" rel="noopener">Pagar con Mercado Pago <small>· acceso inmediato</small></a>
           <a class="btn btn-buy" href="https://wa.me/56993992990?text=Hola%2C%20quiero%20comprar%20el%20acceso%20a%20Aprende%20Calef%C3%B3n%20(%2429.990)%20por%20transferencia" target="_blank" rel="noopener">Pagar por transferencia (WhatsApp)</a>
         </div>
+        <div class="abroad"><small>PAGOS DESDE OTROS PAÍSES</small><b>¿Estás fuera de Chile?</b><p>Escríbenos y te enviamos un link para pagar con tarjeta en tu moneda. El acceso te llega igual a tu correo.</p><a href="https://wa.me/56993992990?text=Hola%2C%20estoy%20fuera%20de%20Chile%20y%20quiero%20comprar%20Aprende%20Calef%C3%B3n.%20%C2%BFC%C3%B3mo%20pago%3F" target="_blank" rel="noopener">Pagar desde otro país →</a></div>
         <div class="guarantee"><span class="shield" aria-hidden="true">🛡️</span><span><b>Garantía de 30 días:</b> si no te convence el contenido o tienes problemas para acceder, te devolvemos tu dinero dentro de los primeros 30 días.</span></div>
         <ol class="steps">
           <li>Elige cómo pagar.</li>
@@ -579,6 +780,8 @@ main,footer.site{position:relative;z-index:1}
       <details><summary>¿El acceso caduca?</summary><p>No. Es un pago único con acceso permanente, y los nuevos materiales se incorporan sin costo adicional.</p></details>
       <details><summary>¿Qué marcas cubre?</summary><p>Junkers, Bosch, Splendid, Orbis, Rheem, Haceb y Mademsa. Usa el filtro del temario para ver qué temas corresponden a cada una.</p></details>
       <details><summary>¿Cómo puedo pagar?</summary><p>Puedes pagar con Mercado Pago o coordinar una transferencia por WhatsApp.</p></details>
+      <details><summary>¿Puedo compartir el acceso?</summary><p>No. El acceso es personal y se activa con tu correo de Google. Así protegemos el material y la comunidad.</p></details>
+      <details><summary>¿Qué pasa si pierdo el acceso?</summary><p>Nos escribes por WhatsApp con el correo con que compraste y te lo volvemos a activar, sin costo.</p></details>
       <details><summary>¿Qué pasa en la comunidad de WhatsApp?</summary><p>Técnicos comparten casos reales, fallas, soluciones y recomendaciones del trabajo en terreno.</p></details>
     </div>
   </div>
@@ -726,5 +929,22 @@ render();
 })();
 </script>
 
+
+<script>
+// v4: biblioteca en el celular + lógica animada
+(()=>{
+  const files=document.getElementById('dvFiles');
+  if(files&&typeof items!=='undefined'){
+    files.innerHTML=items.slice(0,16).map(i=>`<div class="dv-file"><i class="${i.pdf?'pdf':'mp4'}">${i.pdf?'PDF':'MP4'}</i><span>${String(i.t).replace(/[<>&]/g,'')}</span></div>`).join('');
+  }
+  const run=(el,cls)=>el&&new IntersectionObserver(e=>e.forEach(x=>el.classList.toggle(cls,x.isIntersecting)),{threshold:.3}).observe(el);
+  run(document.getElementById('lib'),'run');
+  const lg=document.getElementById('logic'); run(lg,'run');
+  const steps=[...document.querySelectorAll('#logicSteps span')], T=[0,.12,.25,.38,.49,.56,.68], D=8000; let t0=null;
+  function tick(now){ if(lg.classList.contains('run')){ if(t0===null)t0=now; const p=((now-t0)%D)/D; let k=-1; T.forEach((v,i)=>{if(p>=v&&p<.94)k=i}); steps.forEach((s,i)=>s.classList.toggle('on',i===k)); } else { t0=null; }
+    requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
