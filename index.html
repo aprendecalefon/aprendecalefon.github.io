@@ -559,6 +559,248 @@ h2{text-transform:none;letter-spacing:-.025em;line-height:1.08}
 .price-line s{color:var(--muted);font-size:17px}.price-line em{flex-basis:100%;font-style:normal;color:var(--orange2);font-weight:700;font-size:14px}
 .creator-sm{margin:4px 0 18px;color:var(--muted);font-size:14.5px}.creator-sm b{color:var(--text)}
 .cat-note{margin:18px 0 0;color:var(--muted);font-size:15px}.cat-note b{color:var(--text)}
+
+/* ===== Tema claro formal ===== */
+:root{--navy:#f6f8fb;--navy2:#ffffff;--card:#ffffff;--line:#e3e9f0;--orange:#ea580c;--orange2:#c2410c;--text:#0f1b2b;--muted:#5b6b80;--ink:#0f1b2b}
+body{background:var(--navy);color:var(--text)}
+.bg-fx{display:none}
+header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);box-shadow:0 1px 0 #0000}
+header nav a{color:#334155}
+.logo b{color:var(--text)}
+.topbar{background:#0f1b2b;color:#fff}
+.topbar b{background:#ffffff1f}
+h2{text-transform:none;letter-spacing:-.02em;font-weight:800}
+h2 em{color:var(--orange)}
+.hero{background:linear-gradient(180deg,#fff,#f6f8fb)}
+.hero h1{color:var(--text)} .hero h1 span{color:var(--orange)}
+.eyebrow{color:var(--orange)}
+section[style*="navy2"]{background:#fff!important;border-block:1px solid var(--line)}
+.stat,.ccard,.xcard,.guide,.faq details,.logic,.av-side,.av-acc,.compare-wrap{background:#fff!important;border-color:var(--line)!important;box-shadow:0 1px 2px #0f1b2b0d}
+.stat b{color:var(--orange)}
+.brands{background:#fff;border-block:1px solid var(--line)}
+.brand.txt{color:#94a3b8}
+.brand img{filter:grayscale(1) contrast(1.1);opacity:.75}
+.ccover .lvl{background:#ffffffe6;color:#0f1b2b}
+.ccover[style*="radial-gradient"],.ccover[style*="#10243d"]{background:#eef2f7!important}
+.ccover[style*="linear-gradient"]{background:linear-gradient(135deg,#eef2f7,#e2e8f0)!important}
+.cat-note{color:var(--muted)}
+.av-tabs button{color:var(--muted)} .av-tabs button.on{color:var(--text)}
+.av-q,.av-pv button{background:#fff;color:var(--text);border-color:var(--line)}
+.av-pv button.on{background:#fff7ed;border-color:var(--orange)}
+.av-le{color:#334155} .av-le:hover{background:#f1f5f9;color:var(--text)} .av-le.cur{background:#fff7ed;color:var(--text)}
+.av-goal{background:#f8fafc;color:var(--muted)}
+.av-bar{background:#e2e8f0}
+.av-mod-h{color:var(--text)}
+.av-title{color:var(--text)}
+.av-btn{background:#fff;color:var(--text);border-color:var(--line)}
+.av-mini{background:#fff;color:var(--text);border-color:var(--line)}
+.logic{background:#0f1b2b!important}
+.logic-steps span{background:#1a2b40;color:#cbd5e1}
+.compare th,.compare td{border-color:var(--line);color:#334155}
+.compare thead th{color:var(--text)}
+.compare .us{background:#fff7ed}
+.compare thead .us{background:var(--orange);color:#fff}
+.offer{box-shadow:0 10px 30px #0f1b2b14;border:1px solid var(--line)}
+.cd div{background:#0f1b2b}
+.xcard.best{border-color:var(--orange)!important}
+.xprice{color:var(--text)}
+.guide .ph{color:#fff}
+.chips2 span,.reassure span{background:#f1f5f9;color:#334155;border-color:var(--line)}
+.flags{background:#fff}
+.final{background:#fff;border-top:1px solid var(--line)}
+footer.site{background:#0f1b2b;color:#cbd5e1}
+.mbar{background:#fff;border-top:1px solid var(--line);color:var(--text)}
+.btn-ghost{background:#fff;color:var(--text);border-color:#cbd5e1}
+.btn-ghost:hover{border-color:var(--orange)}
+.btn-buy{box-shadow:none}
+.btn::after{display:none}
+.hv-label{background:#fff;border-color:var(--line);color:var(--muted)} .hv-label b{color:var(--text)}
+.price-line b{color:var(--text)}
+.creator-sm{color:var(--muted)}
+.lead{color:var(--muted)}
+.faq summary{color:var(--text)}
+.steps li::before{background:#0f1b2b;color:#fff}
+
+/* ===== Diseño extra ===== */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(520px 380px at 88% 8%,#ffedd5 0,transparent 70%),
+  radial-gradient(520px 420px at 0% 100%,#dbeafe 0,transparent 70%),
+  #fff}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#0f1b2b14 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.hero .wrap{position:relative}
+.hero h1 span{background:linear-gradient(transparent 62%,#fed7aa 62%,#fed7aa 92%,transparent 92%);padding:0 4px;color:var(--orange)}
+.eyebrow{background:#fff7ed;border:1px solid #fed7aa;padding:5px 12px;border-radius:999px;letter-spacing:1.6px}
+.stat{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.stat::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),#f59e0b)}
+.stat b{background:linear-gradient(135deg,#ea580c,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ccard,.xcard,.stat{transition:transform .25s,box-shadow .25s}
+.ccard:hover,.xcard:hover,.stat:hover{transform:translateY(-4px);box-shadow:0 18px 40px #0f1b2b1a!important}
+.ccard .ccover[style*="radial-gradient"],.ccard .ccover[style*="#10243d"]{background:linear-gradient(135deg,#fff7ed,#ffedd5)!important}
+.ccard:nth-child(2) .ccover{background:linear-gradient(135deg,#eff6ff,#dbeafe)!important}
+.ccard .ccover[style*="linear-gradient(135deg,#142b47"]{background:linear-gradient(135deg,#f0fdf4,#dcfce7)!important}
+.brands{background:linear-gradient(90deg,#f8fafc,#fff,#f8fafc)}
+/* banda oscura para la lógica */
+#logica{background:#0f1b2b!important;border:0!important;position:relative;overflow:hidden}
+#logica::before{content:"";position:absolute;width:600px;height:600px;right:-200px;top:-260px;background:radial-gradient(circle,#ea580c33,transparent 65%)}
+#logica h2{color:#fff} #logica .lead{color:#94a3b8} #logica .eyebrow{background:#ea580c22;border-color:#ea580c55;color:#fdba74}
+#logica .logic{background:#132339!important;border-color:#1f3550!important;box-shadow:0 30px 60px #0006}
+/* comparación */
+.compare thead .us{background:linear-gradient(135deg,#ea580c,#f59e0b)}
+/* tarjeta de precio con borde degradado */
+.offer{border:2px solid transparent!important;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#ea580c,#f59e0b,#3b82f6) border-box!important;box-shadow:0 30px 70px #ea580c1f}
+#precio{background:radial-gradient(700px 300px at 50% 0,#fff7ed,transparent 70%),#f6f8fb!important}
+.xcard.best{background:linear-gradient(180deg,#fff7ed,#fff 40%)!important}
+/* guía */
+#guia{background:radial-gradient(600px 260px at 15% 20%,#dbeafe,transparent 70%),#fff!important}
+.guide .ph{box-shadow:0 0 0 6px #fff,0 0 0 8px #fed7aa;border:0}
+/* cierre en banda oscura */
+.final{background:radial-gradient(600px 260px at 50% 0,#ea580c40,transparent 70%),#0f1b2b!important;border:0}
+.final h2{color:#fff} .final .lead{color:#94a3b8}
+.final .btn-ghost{background:transparent;color:#fff;border-color:#334155}
+footer.site{border-top:1px solid #1f3550}
+
+/* ===== Premium 2 · minimal tech ===== */
+:root{--navy:#ffffff;--navy2:#f5f5f7;--card:#ffffff;--line:#e5e5ea;--orange:#ff6a00;--orange2:#ff6a00;--text:#1d1d1f;--muted:#6e6e73;--ink:#1d1d1f}
+body{background:#fff;color:var(--text);-webkit-font-smoothing:antialiased}
+.topbar{background:#1d1d1f;color:#f5f5f7;font-weight:500;font-size:12.5px}
+.topbar b{background:#ffffff1a}
+header{background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid #0000000f}
+header nav a{color:#1d1d1fcc;font-weight:500;font-size:14px}
+h1,h2,.hero h1{font-family:Inter,"Segoe UI",Arial,sans-serif!important;font-weight:700!important;letter-spacing:-.035em!important;text-transform:none!important}
+h2{font-size:clamp(36px,5.6vw,60px)!important;line-height:1.04!important}
+h2 em{font-style:normal;background:linear-gradient(90deg,#ff6a00,#ff2d55);-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{letter-spacing:-.02em}
+.eyebrow{background:none!important;border:0!important;padding:0!important;color:var(--orange)!important;letter-spacing:0!important;text-transform:none!important;font-size:17px!important;font-weight:600!important}
+.lead{color:var(--muted);font-size:19px;line-height:1.45}
+section{padding:110px 0}
+section > .wrap > .eyebrow, section > .wrap > h2, section > .wrap > .lead{text-align:center;margin-left:auto;margin-right:auto;display:block}
+section > .wrap > .lead{max-width:680px}
+section[style*="navy2"]{background:#f5f5f7!important;border:0!important}
+/* portada centrada */
+.hero{background:#fff!important;text-align:center;padding:80px 0 40px}
+.hero::before{display:none}
+.hero .wrap{grid-template-columns:1fr!important;justify-items:center}
+.hero h1{font-size:clamp(52px,8.5vw,104px)!important;line-height:.98!important}
+.hero h1 span{background:linear-gradient(90deg,#ff6a00,#ff2d55)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;padding:0!important}
+.hero .lead,.hero .creator-sm{margin-left:auto;margin-right:auto;max-width:720px}
+.hero .eyebrow{display:inline-block}
+.stats{max-width:760px;margin:30px auto 0!important;gap:0!important}
+.stat{background:none!important;border:0!important;box-shadow:none!important}
+.stat::before{display:none}
+.stat b{background:none!important;color:var(--text)!important;-webkit-text-fill-color:currentColor;font-size:42px;letter-spacing:-.03em}
+.price-row{justify-items:center;text-align:center}
+.price-line{justify-content:center}
+.btns,.reassure{justify-content:center}
+.hero-img{width:100%;max-width:980px;margin-top:40px}
+.hv-label{display:none}
+.laptop .scr{border-color:#d2d2d7!important;background:#000;box-shadow:0 50px 100px -20px #0000004d}
+.laptop .base{background:linear-gradient(#e3e3e8,#b9b9c0)!important}
+.phone{border-color:#d2d2d7!important}
+/* botones tipo píldora */
+.btn{border-radius:999px!important;font-weight:600!important}
+.btn-buy,.btn-pay{background:#ff6a00!important;color:#fff!important;border:0!important;box-shadow:none!important}
+.btn-buy:hover,.btn-pay:hover{background:#e65f00!important}
+.btn-ghost{background:transparent!important;color:#ff6a00!important;border:1px solid #ff6a00!important}
+.wa-float{background:#1d1d1f!important;color:#fff!important;border-radius:999px!important;border:0!important}
+/* marcas */
+.brands{background:#fff!important;border:0!important}
+.brands p{text-transform:none;letter-spacing:0;color:var(--muted)}
+/* tarjetas grandes y suaves */
+.ccard,.xcard,.guide,.av-side,.av-acc,.compare-wrap,.offer{border:0!important;border-radius:28px!important;box-shadow:none!important}
+section[style*="navy2"] .ccard,section[style*="navy2"] .xcard,section[style*="navy2"] .guide{background:#fff!important}
+#extras .xcard,#temario .av-side{background:#f5f5f7!important}
+.ccard:hover,.xcard:hover,.stat:hover{transform:scale(1.015)!important;box-shadow:0 30px 60px -20px #00000026!important}
+.ccard:nth-child(n) .ccover[style]{background:#f5f5f7!important}
+.ccover{border-radius:28px 28px 0 0}
+.ccover .lvl{background:#1d1d1f;color:#fff;border-radius:999px}
+.cat-note{text-align:center}
+.av-player,.logic{border-radius:24px!important}
+.av-pv,.av-tabs{justify-content:center}
+.av-pv button,.av-q,.av-mini,.av-btn{border-radius:999px!important}
+.av-pv button.on{background:#1d1d1f!important;color:#fff!important;border-color:#1d1d1f!important}
+.av-mini.pri,.av-btn.pri{background:#ff6a00!important;color:#fff!important;border-color:#ff6a00!important}
+.av-le.cur{background:#fff!important;border-radius:12px}
+.av-free{background:#ff6a00!important;color:#fff!important;border-radius:999px}
+/* lógica en negro puro */
+#logica{background:#000!important}
+#logica::before{background:radial-gradient(circle,#ff6a0033,transparent 65%)}
+#logica h2{color:#f5f5f7} #logica .lead{color:#a1a1a6} #logica .eyebrow{color:#ff9f45!important}
+#logica .logic{background:#111!important;border:0!important}
+/* comparación */
+.compare-wrap{background:#fff!important}
+.compare .us{background:#fff4ec!important}
+.compare thead .us{background:#ff6a00!important;color:#fff!important;border-radius:16px 16px 0 0}
+/* precio */
+#precio{background:#f5f5f7!important}
+.offer{background:#fff!important;box-shadow:0 40px 80px -30px #00000033!important}
+.offer .big{letter-spacing:-.04em;font-size:80px!important}
+.discount{background:#ff2d55!important;color:#fff!important;border-radius:999px}
+.cd div{background:#1d1d1f!important;border-radius:14px!important}
+.guarantee,.abroad{border-radius:18px!important;border:0!important;background:#f5f5f7!important}
+.paybadges span{border-radius:999px!important}
+.xcard.best{background:linear-gradient(180deg,#fff4ec,#f5f5f7)!important}
+.xcard .tag{border-radius:999px!important}
+/* guía y faq */
+#guia{background:#fff!important}
+.guide{background:#f5f5f7!important}
+.guide .ph{background:linear-gradient(135deg,#ff6a00,#ff2d55)!important;box-shadow:none!important}
+.chips2 span{border-radius:999px!important;background:#fff!important;border:0!important}
+.faq{margin:0 auto}
+.faq details{border-radius:18px!important;background:#f5f5f7!important;border:0!important;margin-bottom:10px;padding:4px 18px}
+/* cierre */
+.final{background:#000!important;padding:130px 0}
+.final h2{color:#f5f5f7} .final .lead{color:#a1a1a6}
+.final .btn-ghost{color:#fff!important;border-color:#ffffff55!important}
+footer.site{background:#f5f5f7!important;color:#6e6e73!important;border:0}
+footer.site a{color:#1d1d1f}
+.flags{display:none}
+
+/* ===== Plataforma de cursos ===== */
+.phero{background:#1d1d1f;color:#f5f5f7;padding:56px 0 64px;position:relative}
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px;align-items:start}
+.crumbs{font-size:14px;color:#ff9f45;font-weight:600;margin-bottom:16px}.crumbs a{color:#ff9f45;text-decoration:none}.crumbs span{color:#ff9f45}
+.phero h1{font-size:clamp(34px,4.6vw,52px)!important;line-height:1.08!important;color:#fff;margin:0 0 14px}
+.psub{font-size:19px;line-height:1.5;color:#d2d2d7;margin:0 0 18px;max-width:640px}
+.pbadges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pbadges span{font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:#ffffff14;color:#f5f5f7}
+.pbadges .pb1{background:#ffd60a;color:#1d1d1f}
+.pby{color:#a1a1a6;margin:0 0 12px;font-size:15px}.pby a{color:#ff9f45;font-weight:600}
+.pmeta{display:flex;flex-wrap:wrap;gap:6px 18px;color:#d2d2d7;font-size:14px}
+.pcard{background:#fff;color:#1d1d1f;border-radius:22px;overflow:hidden;box-shadow:0 40px 80px -20px #000a;position:relative;margin-bottom:-160px;z-index:2}
+.pcard .hv{aspect-ratio:16/9;background:#000;position:relative}
+.pcard .hv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pcard .hv-cover .pl{width:64px;height:64px;border-radius:50%;background:#fff;color:#1d1d1f;display:grid;place-items:center;font-size:22px}
+.pcard .hv-cover small{left:50%;transform:translateX(-50%);bottom:12px;background:#000c;border-radius:999px;padding:5px 12px}
+.pcb{padding:20px 22px 22px}
+.pprice{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pprice b{font-size:40px;font-weight:800;letter-spacing:-.03em}
+.pprice s{color:#86868b;font-size:17px}
+.pprice .discount{font-size:13px}
+.pdead{margin:4px 0 14px;color:#d70015;font-size:14px;font-weight:600}.pdead b{font-variant-numeric:tabular-nums}
+.pmain{width:100%;justify-content:center;font-size:17px!important;padding:15px!important}
+.psec{width:100%;justify-content:center;margin-top:8px}
+.pnote{text-align:center;color:#6e6e73;font-size:13px;margin:10px 0 14px}
+.pinc{display:grid;gap:7px;font-size:14px;color:#1d1d1f;border-top:1px solid #e5e5ea;padding-top:14px}
+.pinc b{font-size:15px;margin-bottom:2px}
+.phow{font-size:13px;color:#6e6e73;margin:14px 0 0;background:#f5f5f7;border-radius:12px;padding:10px 12px}.phow a{color:#ff6a00;font-weight:600}
+.learn{padding:40px 0 20px!important;background:#fff}
+.learn .wrap{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px}
+.lbox{border:1px solid #e5e5ea;border-radius:22px;padding:24px 26px}
+.lbox h3{font-size:24px;font-weight:700;margin:0 0 14px;letter-spacing:-.02em}
+.lbox ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.lbox li{position:relative;padding-left:26px;font-size:15px;line-height:1.45}
+.lbox li::before{content:"✓";position:absolute;left:0;top:0;color:#ff6a00;font-weight:800}
+.brands{margin-top:0}
+/* barra de compra fija en computador también */
+.mbar{display:flex!important;position:fixed;left:0;right:0;bottom:0;z-index:30;justify-content:center;gap:24px;align-items:center;padding:10px 16px;background:#fffffff2;backdrop-filter:blur(14px);border-top:1px solid #e5e5ea;transform:translateY(110%);transition:transform .3s}
+.mbar.show{transform:none}
+.wa-float{bottom:84px!important}
+@media(max-width:900px){
+  .pgrid,.learn .wrap{grid-template-columns:1fr;gap:24px}
+  .pcard{margin-bottom:0}
+  .lbox ul{grid-template-columns:1fr}
+  .phero{padding:32px 0 36px}
+}
 </style>
 <!-- Meta Pixel: reemplaza TU_PIXEL_ID por el ID de tu píxel y quita los comentarios para activarlo
 <script>
@@ -582,48 +824,55 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
 </div>
 
 <header>
-  <div class="topbar">🔥 <span class="tb-long">Precio de lanzamiento </span><span style="white-space:nowrap">$29.990 termina en</span> <b data-cd="short">—</b></div>
+  <div class="topbar"><span class="tb-long">Precio de lanzamiento </span><span style="white-space:nowrap">$29.990 termina en</span> <b data-cd="short">—</b></div>
   <div class="wrap">
     <a class="logo" href="#inicio"><img src="assets/aprende-calefon-mark.svg" alt="Logo de Aprende Calefón"><b>Aprende Calefón</b></a>
     <nav>
-      <a href="#cursos">Cursos</a>
-      <a href="#logica">Lógica</a>
-      <a href="#temario">Aula</a>
-      <a href="cuenta/?next=/%23temario" id="navLogin">Ingresar</a>
-      <a href="#precio">Precio</a>
+      <a href="#temario">Temario</a>
+      <a href="#temario" data-free-go>Clase gratis</a>
       <a href="#faq">Preguntas</a>
-      <a class="btn btn-buy" href="#precio">Quiero acceder</a>
+      <a href="cuenta/?next=/%23temario" id="navLogin">Ingresar</a>
+      <a class="btn btn-buy" href="#comprar">Comprar</a>
     </nav>
   </div>
 </header>
 
 <main id="inicio">
 <!-- HERO: cifras concretas + tranquilidad junto al precio -->
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <div class="flags"><span class="flg"><svg viewBox="0 0 30 20" width="27" height="18" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect y="10" width="30" height="10" fill="#d52b1e"/><rect width="10" height="10" fill="#0039a6"/><polygon points="5,2.2 5.9,4.9 8.7,4.9 6.4,6.6 7.3,9.3 5,7.6 2.7,9.3 3.6,6.6 1.3,4.9 4.1,4.9" fill="#fff"/></svg><svg viewBox="0 0 30 20" width="27" height="18" aria-hidden="true"><rect width="30" height="20" fill="#74acdf"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><circle cx="15" cy="10" r="2.2" fill="#f6b40e" stroke="#85340a" stroke-width=".4"/></svg></span><span>Para técnicos de <b>Chile</b> y <b>Argentina</b></span></div>
-      <span class="eyebrow">Formación técnica en calefones</span>
-      <h1>Aprende a reparar<br><span>calefones</span></h1>
-      <p class="lead">Tres cursos en video, tiro natural, tiro forzado e instalación y conversión, más casos complementarios y una comunidad privada de WhatsApp donde técnicos resuelven casos reales.</p>
-      <p class="creator-sm">🛡️ Seleccionado y organizado por un instalador de gas autorizado <b>SEC Clase 3</b>, con +15 años en terreno.</p>
-      <div class="stats">
-        <div class="stat"><b class="count-up" data-count="88">88</b><span>videos en 3 cursos</span></div>
-        <div class="stat"><b class="count-up" data-count="7">7</b><span>marcas de calefones</span></div>
-        <div class="stat"><b class="count-up" data-count="16" data-prefix="+">+16</b><span>casos y PDF extra</span></div>
-        <div class="stat"><b class="count-up" data-count="200" data-prefix="+">+200</b><span>técnicos en la comunidad</span></div>
-      </div>
-      <div class="price-row">
-        <div class="price-line"><b>$29.990</b> <span>CLP · pago único</span> <s class="launch-only">$59.990</s><em class="launch-only">Precio de lanzamiento hasta el 30 de noviembre</em></div>
-        <div class="btns"><a class="btn btn-buy" href="#precio">Quiero acceder →</a><a class="btn btn-ghost" href="#temario" data-free-go>▶ Ver clase gratis</a></div>
-      </div>
-      <div class="reassure"><span>Pago único</span><span>Acceso permanente</span><span>Nuevos materiales sin costo</span></div>
+<section class="phero">
+  <div class="wrap pgrid">
+    <div class="pinfo">
+      <div class="crumbs"><a href="#cursos">Cursos</a> › <span>Gas</span> › <span>Calefones</span></div>
+      <h1>Curso completo de reparación de calefones</h1>
+      <p class="psub">Aprende a diagnosticar, reparar, mantener e instalar calefones de tiro natural y tiro forzado, paso a paso y con equipos reales.</p>
+      <div class="pbadges"><span class="pb1">Desde cero</span><span>Certificado incluido</span><span>Acceso de por vida</span></div>
+      <p class="pby">Creado por <a href="#guia">Sebastián Lagos</a> · Instalador de gas autorizado SEC Clase 3, +15 años en terreno</p>
+      <div class="pmeta"><span>▶ 88 clases</span><span>⏱ 17 h 56 min de video</span><span>3 cursos</span><span>Español</span><span>Celular y PC</span></div>
     </div>
-    <div class="hero-img"><div class="hv-label">▶ Clase gratis del curso 1 · <b>Fallas y reparación de calefón</b></div>
-      <div class="mock"><div class="laptop"><div class="scr"><div class="hv" id="hv"><button type="button" class="hv-cover" style="background-image:linear-gradient(#0005,#0008),url(assets/aula-desk.jpg)" onclick="this.parentElement.innerHTML='<iframe src=&quot;https://drive.google.com/file/d/1RDzvR6_E2z2QWxv5h-teFqkd8aEFJIGF/preview&quot; allow=&quot;autoplay; fullscreen&quot; allowfullscreen title=&quot;Clase gratis&quot;></iframe>'"><span class="pl">▶</span><small>2:09 · Clase gratis</small></button></div></div><div class="base"></div></div><div class="phone"><img src="assets/aula-mob.jpg" alt="Aula de Aprende Calefón en el celular" width="780" height="1600"></div></div>
-
-    </div>
+    <aside class="pcard" id="comprar">
+      <div class="hv" id="hv"><button type="button" class="hv-cover" style="background-image:linear-gradient(#0004,#000a),url(assets/cover-calefon.jpg)" onclick="this.parentElement.innerHTML='<iframe src=&quot;https://drive.google.com/file/d/1RDzvR6_E2z2QWxv5h-teFqkd8aEFJIGF/preview&quot; allow=&quot;autoplay; fullscreen&quot; allowfullscreen title=&quot;Clase gratis&quot;></iframe>'"><span class="pl">▶</span><small>Ver clase gratis · 2:09</small></button></div>
+      <div class="pcb">
+        <div class="pprice"><b>$29.990</b><s class="launch-only">$59.990</s><span class="discount launch-only">50% DCTO</span></div>
+        <p class="pdead launch-only">El precio de lanzamiento termina en <b data-cd="short">—</b></p>
+        <a class="btn btn-buy pmain" href="https://mpago.la/25EDXe5" target="_blank" rel="noopener">Comprar ahora</a>
+        <a class="btn btn-ghost psec" href="https://wa.me/56993992990?text=Hola%2C%20quiero%20comprar%20Aprende%20Calef%C3%B3n%20(%2429.990)%20por%20transferencia" target="_blank" rel="noopener">Pagar por transferencia</a>
+        <p class="pnote">Pago único · Garantía de 30 días</p>
+        <div class="pinc"><b>Este curso incluye:</b>
+          <span>▶ 17 h 56 min de video en 3 cursos</span><span>📄 Casos complementarios y PDF</span><span>🎓 Certificado de finalización</span><span>💬 Comunidad privada de técnicos</span><span>♾ Acceso de por vida, en celular y PC</span></div>
+        <p class="phow">Después de pagar, envíanos el comprobante por <a href="https://wa.me/56993992990?text=Hola%2C%20acabo%20de%20pagar%20Aprende%20Calef%C3%B3n.%20Te%20env%C3%ADo%20el%20comprobante" target="_blank" rel="noopener">WhatsApp</a> y activamos tu cuenta.</p>
+      </div>
+    </aside>
   </div>
+</section>
+<section class="learn">
+  <div class="wrap"><div class="lbox"><h3>Lo que vas a aprender</h3><ul>
+    <li>Diagnosticar las fallas más comunes de un calefón y saber por dónde partir</li>
+    <li>Medir con el tester microswitch, bujía, sensor de llama y válvula de gas</li>
+    <li>Hacer una mantención completa: membrana, cuerpo de agua y quemador</li>
+    <li>Revisar presostato, ventilador y placa en equipos de tiro forzado</li>
+    <li>Reparar equipos Junkers, Bosch, Splendid, Orbis, Rheem, Haceb y Mademsa</li>
+    <li>Elegir e instalar un calefón según normativa, y convertirlo de gas</li>
+  </ul></div></div>
 </section>
 
 <div class="brands">
@@ -670,7 +919,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
         <div class="cbody"><h3>Instalación y conversión</h3><p>Cómo elegir e instalar un calefón, normativa, cambio de interior a exterior y conversión de gas.</p>
         <div class="cmeta"><span>▶ 13 lecciones</span><span>⏱ 2 h 58 min</span><span>2 módulos</span></div><button type="button" class="btn btn-ghost" data-cat="INSTALACION">Ver temario →</button></div></article>
     </div>
-    <p class="cat-note">🎁 Incluye además <b>Más material</b>: casos complementarios y PDF de apoyo (mediciones con tester, calefón ionizado y más), que se van sumando sin costo.</p>
+    <p class="cat-note">Incluye además <b>Más material</b>: casos complementarios y PDF de apoyo (mediciones con tester, calefón ionizado y más), que se van sumando sin costo.</p>
   </div>
 </section>
 
@@ -681,7 +930,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
     <h2>Explora el aula <em>por dentro</em></h2>
     <p class="lead">Todas las lecciones a la vista. La clase marcada como <b style="color:var(--orange2)">GRATIS</b> la puedes ver ahora; el resto se desbloquea al comprar.</p>
     <div class="av-acc" id="avAcc"><span id="avAccTxt">¿Ya eres alumno?</span><span class="av-acc-b" id="avAccB"><a class="av-mini" href="cuenta/?next=/%23temario">Ingresar</a><a class="av-mini pri" href="cuenta/?modo=registro&next=/%23temario">Crear cuenta</a></span></div>
-    <div class="av-pv" id="avPv"><button type="button" data-pv="free" class="on">▶ Clase gratis</button><button type="button" data-pv="comm">💬 La comunidad por dentro</button></div>
+    <div class="av-pv" id="avPv"><button type="button" data-pv="free" class="on">▶ Clase gratis</button><button type="button" data-pv="comm">La comunidad por dentro</button></div>
     <div class="av-tabs" id="avTabs"></div>
     <input id="q" class="av-q" type="search" placeholder="Buscar lección: membrana, presostato, Junkers, ionización…" aria-label="Buscar en el aula">
     <div class="av">
@@ -695,7 +944,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
           <button type="button" class="av-btn pri" id="avNext">Siguiente →</button>
           <a class="av-btn" id="avOpen" target="_blank" rel="noopener">Abrir en Drive ↗</a>
         </div>
-        <div class="av-certs" id="avCerts" hidden><b>🎓 Tus certificados</b><div id="avCertRows"></div></div>
+        <div class="av-certs" id="avCerts" hidden><b>Tus certificados</b><div id="avCertRows"></div></div>
       </div>
       <aside class="av-side">
         <div class="av-side-h"><b id="avSName"></b><span id="avSTxt"></span><div class="av-bar"><i id="avSBar"></i></div></div>
@@ -757,7 +1006,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
         <rect x="384" y="238" width="196" height="16" rx="6" fill="#5b6575"/>
         <g class="lg lg-flame"><path d="M404 238q8-36 0-54q14 22 8 54zM430 238q8-36 0-54q14 22 8 54zM456 238q8-36 0-54q14 22 8 54zM482 238q8-36 0-54q14 22 8 54zM508 238q8-36 0-54q14 22 8 54zM534 238q8-36 0-54q14 22 8 54zM560 238q8-36 0-54q14 22 8 54z" fill="url(#lgF)"/></g>
       </svg>
-      <div class="logic-steps" id="logicSteps"><span>💧 Abres el agua</span><em>→</em><span>🔘 Membrana y microswitch</span><em>→</em><span>🔋 Pilas activan la placa</span><em>→</em><span>⚡ Chispa en la bujía</span><em>→</em><span>🟡 Se abre la válvula</span><em>→</em><span>🔥 Enciende el quemador</span><em>→</em><span>📡 Sensor confirma la llama</span></div>
+      <div class="logic-steps" id="logicSteps"><span>Abres el agua</span><em>→</em><span>Membrana y microswitch</span><em>→</em><span>Pilas activan la placa</span><em>→</em><span>Chispa en la bujía</span><em>→</em><span>Se abre la válvula</span><em>→</em><span>Enciende el quemador</span><em>→</em><span>Sensor confirma la llama</span></div>
     </div>
   </div>
 </section>
@@ -772,26 +1021,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
 <!-- Bonos -->
 
 
-<!-- Comparación de valor -->
-<section id="comparar">
-  <div class="wrap">
-    <span class="eyebrow">Compara antes de decidir</span>
-    <h2>¿Por qué <em>Aprende Calefón?</em></h2>
-    <div class="compare-wrap">
-    <table class="compare">
-      <thead><tr><th></th><th>Curso presencial</th><th><span class="tb-long">Videos sueltos en internet</span><span class="sh">Videos sueltos</span></th><th class="us">Aprende Calefón</th></tr></thead>
-      <tbody>
-        <tr><td>Costo</td><td>Alto, más traslados</td><td>Gratis</td><td class="us"><b>$29.990 pago único</b></td></tr>
-        <tr><td>Horario</td><td>Fijo</td><td>Cuando quieras</td><td class="us">Cuando quieras</td></tr>
-        <tr><td>Contenido ordenado de básico a avanzado</td><td class="y">✓</td><td class="x">✗</td><td class="us y">✓ 88 videos</td></tr>
-        <tr><td>Manuales y material de marcas</td><td>Depende</td><td class="x">✗</td><td class="us y">✓ 7 marcas</td></tr>
-        <tr><td>Comunidad para consultar tus casos</td><td class="x">✗</td><td class="x">✗</td><td class="us y">✓ +200 técnicos</td></tr>
-        <tr><td>Acceso al material</td><td>Termina con el curso</td><td>Puede desaparecer</td><td class="us"><b>De por vida</b></td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</section>
+
 
 <!-- Precio y pago -->
 <section id="precio" style="background:var(--navy2)">
@@ -822,9 +1052,9 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
           <a class="btn btn-pay" href="https://mpago.la/25EDXe5" target="_blank" rel="noopener">Pagar con Mercado Pago <small>· $29.990</small></a>
           <a class="btn btn-buy" href="https://wa.me/56993992990?text=Hola%2C%20quiero%20comprar%20el%20acceso%20a%20Aprende%20Calef%C3%B3n%20(%2429.990)%20por%20transferencia" target="_blank" rel="noopener">Pagar por transferencia (WhatsApp)</a>
         </div>
-        <div class="paybadges" aria-label="Medios de pago"><span>🔒 Mercado Pago</span><span>Débito</span><span>Crédito</span><span>Transferencia</span><span>Pago único</span></div>
+        <div class="paybadges" aria-label="Medios de pago"><span>Mercado Pago</span><span>Débito</span><span>Crédito</span><span>Transferencia</span><span>Pago único</span></div>
         <div class="abroad"><small>PAGOS DESDE OTROS PAÍSES</small><b>¿Estás fuera de Chile?</b><p>Escríbenos y te enviamos un link para pagar con tarjeta en tu moneda. El acceso te llega igual a tu correo.</p><a href="https://wa.me/56993992990?text=Hola%2C%20estoy%20fuera%20de%20Chile%20y%20quiero%20comprar%20Aprende%20Calef%C3%B3n.%20%C2%BFC%C3%B3mo%20pago%3F" target="_blank" rel="noopener">Pagar desde otro país →</a></div>
-        <div class="guarantee"><span class="shield" aria-hidden="true">🛡️</span><span><b>Garantía de 30 días:</b> si no te convence el contenido o tienes problemas para acceder, te devolvemos tu dinero dentro de los primeros 30 días.</span></div>
+        <div class="guarantee"><span class="shield" aria-hidden="true"></span><span><b>Garantía de 30 días:</b> si no te convence el contenido o tienes problemas para acceder, te devolvemos tu dinero dentro de los primeros 30 días.</span></div>
         <ol class="steps">
           <li><a href="cuenta/?modo=registro&next=/%23temario" style="color:var(--orange2);font-weight:800">Crea tu cuenta</a> con tu Gmail y paga con Mercado Pago o por transferencia.</li>
           <li>Envíanos el comprobante por WhatsApp con el correo de tu cuenta.</li>
@@ -874,7 +1104,7 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
       <div><h3>Sebastián Lagos</h3><div class="role">Instalador de gas autorizado SEC Clase 3 · +15 años en terreno</div>
         <p>Seleccioné y ordené este material para que aprendas calefones con una ruta clara: del funcionamiento básico al diagnóstico de fallas, con equipos reales.</p>
         <p>También dirijo <a href="https://gasfiterialagos.github.io/" target="_blank" rel="noopener" style="color:var(--orange2);font-weight:700">Gasfitería Lagos</a>, servicio técnico en Gran Concepción.</p>
-        <div class="chips2"><span>🛡️ SEC Clase 3</span><span>🔧 +15 años en terreno</span><span>💬 +200 técnicos en la comunidad</span></div></div>
+        <div class="chips2"><span>SEC Clase 3</span><span>+15 años en terreno</span><span>+200 técnicos en la comunidad</span></div></div>
     </div>
   </div>
 </section>
@@ -915,11 +1145,11 @@ fbq('init','TU_PIXEL_ID');fbq('track','PageView');fbq('track','ViewContent',{con
   </div>
 </footer>
 
-<a class="btn wa-float" href="https://wa.me/56993992990?text=Hola%2C%20tengo%20una%20duda%20sobre%20Aprende%20Calef%C3%B3n" target="_blank" rel="noopener" aria-label="¿Dudas? Escríbenos por WhatsApp">💬 <span>¿Dudas? Escríbenos</span></a>
+<a class="btn wa-float" href="https://wa.me/56993992990?text=Hola%2C%20tengo%20una%20duda%20sobre%20Aprende%20Calef%C3%B3n" target="_blank" rel="noopener" aria-label="¿Dudas? Escríbenos por WhatsApp"><span>¿Dudas? Escríbenos</span></a>
 
 <div class="mbar">
   <div><b>$29.990</b><small class="mbar-cd">Termina en <span data-cd="short">—</span></small><small class="mbar-sub">Pago único · acceso de por vida</small></div>
-  <a class="btn btn-buy" href="#precio">Quiero acceder</a>
+  <a class="btn btn-buy" href="https://mpago.la/25EDXe5" target="_blank" rel="noopener">Comprar ahora</a>
 </div>
 
 <script>
@@ -1115,6 +1345,10 @@ if(onAuthStateChanged) onAuthStateChanged(auth, async u=>{
   document.querySelectorAll('a[href*="mpago.la/2XSQPaR"]').forEach(a=>{a.href='https://wa.me/56993992990?text='+encodeURIComponent('Hola, quiero comprar Aprende Caldera');a.textContent='Comprar por WhatsApp →';});
   document.querySelectorAll('a[href*="%2429.990"]').forEach(a=>{a.href=a.href.replace('%2429.990','%2459.990');});
 })();
+</script>
+<script>
+(()=>{ const bar=document.querySelector('.mbar'), card=document.getElementById('comprar'); if(!bar||!card) return;
+  new IntersectionObserver(e=>bar.classList.toggle('show',!e[0].isIntersecting && e[0].boundingClientRect.top<0),{threshold:0}).observe(card); })();
 </script>
 </body>
 </html>
