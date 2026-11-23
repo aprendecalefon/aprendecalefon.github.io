@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verificar certificado | Aprende Calefón</title>
+<link rel="icon" type="image/svg+xml" href="../assets/aprende-calefon-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f5f6;--card:#fff;--ink:#1d1418;--muted:#6f6067;--line:#ece4e7;--brand:#f26a0c;--soft:#fff3ea}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;display:flex;flex-direction:column}
+header{background:#fff;border-bottom:1px solid var(--line)}.hd{max-width:1100px;margin:auto;padding:0 16px;height:64px;display:flex;align-items:center}
+.logo{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:900;font-size:19px;text-decoration:none}.logo img{width:30px}
+main{flex:1;display:grid;place-items:center;padding:30px 16px}
+.box{width:100%;max-width:460px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 10px 30px #1d141812}
+h1{font-size:23px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+form{display:flex;gap:8px}input{flex:1;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;text-transform:uppercase}
+button{border:0;border-radius:12px;padding:12px 16px;background:var(--brand);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.res{margin-top:16px;border-radius:14px;padding:16px;display:none}.res.ok{display:block;background:#effaf3;border:1px solid #bfe8cd}.res.no{display:block;background:var(--soft);border:1px solid #ffd6d0}
+.res b{display:block;font-size:18px}.res p{margin:4px 0 0;font-size:14.5px}
+</style></head><body>
+<header><div class="hd"><a class="logo" href="../"><img src="../assets/aprende-calefon-mark.svg" alt="">Aprende Calefón</a></div></header>
+<main><div class="box">
+  <h1>Verificar certificado</h1><p class="sub">Ingresa el código que aparece en el certificado.</p>
+  <form id="f"><input id="c" placeholder="AC-XXXX-XXXX" autocomplete="off"><button>Verificar</button></form>
+  <div class="res" id="r"></div>
+</div></main>
+<script type="module">
+import { db, doc, getDoc } from "../js/firebase.js";
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function check(code){ code=code.trim().toUpperCase(); if(!code) return; const r=$('r'); r.className='res'; r.textContent='';
+  try{ const s=await getDoc(doc(db,'certificates',code));
+    if(s.exists()){ const d=s.data(); r.className='res ok'; r.innerHTML=`<b>✅ Certificado válido</b><p><strong>${esc(d.name)}</strong> completó el <strong>${esc(d.course)}</strong> el ${esc(d.date)}.</p><p style="color:#6f6067">Certificado de finalización emitido por Aprende Calefón · Código ${esc(code)}</p>`; }
+    else { r.className='res no'; r.innerHTML='<b>❌ No encontramos ese código</b><p>Revisa que esté bien escrito, con los guiones.</p>'; }
+  }catch(e){ r.className='res no'; r.innerHTML='<b>No se pudo verificar</b><p>Revisa tu conexión e intenta de nuevo.</p>'; } }
+$('f').onsubmit=e=>{e.preventDefault();check($('c').value);};
+const p=new URLSearchParams(location.search).get('c'); if(p){ $('c').value=p; check(p); }
+</script>
+</body></html>
