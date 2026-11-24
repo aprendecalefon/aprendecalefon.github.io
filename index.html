@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="assets/aprende-calefon-mark.svg">
 <title>Aprende Calefón | Curso de reparación y mantención de calefones</title>
-<meta name="description" content="Curso completo de reparación de calefones: 88 clases en video, certificado y comunidad de técnicos. Prueba 6 clases gratis.">
+<meta name="description" content="Curso completo de reparación de calefones: 88 clases en video, certificado y comunidad de técnicos. Prueba 3 clases gratis.">
 <!-- Vista previa para compartir en WhatsApp / redes -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
 <meta property="og:site_name" content="Aprende Calefón">
 <meta property="og:url" content="https://aprendecalefon.github.io/">
 <meta property="og:title" content="Aprende Calefón | Curso de reparación y mantención de calefones">
-<meta property="og:description" content="Curso completo de reparación de calefones: 88 clases en video, certificado y comunidad de técnicos. Prueba 6 clases gratis.">
-<meta property="og:image" content="https://aprendecalefon.github.io/assets/og2.jpg">
+<meta property="og:description" content="Curso completo de reparación de calefones: 88 clases en video, certificado y comunidad de técnicos. Prueba 3 clases gratis.">
+<meta property="og:image" content="https://aprendecalefon.github.io/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -1244,7 +1244,7 @@ const flat=s=>SECS[s].mods.flatMap((m,mi)=>m.l.map((l,li)=>({m:mi,l:li,id:l.id})
 const courseIds=ci=>D.courses[ci].mods.flatMap(m=>m.l.map(l=>l.id));
 const fd=x=>x?Math.floor(x/60)+':'+String(x%60).padStart(2,'0'):''; const fh=x=>{const h=Math.floor(x/3600),m=Math.round(x%3600/60);return h?h+' h '+m+' min':m+' min'}; const sumD=L=>L.reduce((a,l)=>a+(l.d||0),0);
 const pct=ids=>ids.length?Math.round(100*ids.filter(i=>seen.has(i)).length/ids.length):0;
-const FREES=["1RDzvR6_E2z2QWxv5h-teFqkd8aEFJIGF", "11z2X8tMHCddSkilpOq9qz0NoqnnHFpkX", "1ZIqnoeyPlXlJa3sTOmA91QEqOq-hCmUT", "14E9MnGbDxn1j9YDNKv4yHBAlCTZ3VsKi", "1fF3GAyjQs4EBL7aKCe9X5CNx8ELQ7bGg", "10O6rSpbi7mJsyyAy2XR4VjPLxG9hcZLU"]; const can=id=>active||FREES.includes(id);
+const FREES=["1RDzvR6_E2z2QWxv5h-teFqkd8aEFJIGF", "14E9MnGbDxn1j9YDNKv4yHBAlCTZ3VsKi", "1fF3GAyjQs4EBL7aKCe9X5CNx8ELQ7bGg"]; const can=id=>active||FREES.includes(id);
 const GOALS={"Curso 1 · Fallas y reparación": "Diagnosticar las fallas más comunes del calefón y repararlas paso a paso, midiendo con el tester.", "Curso 2 · Clases 1 a 4": "Entender cómo funciona un calentador instantáneo, su sistema hidráulico y la membrana.", "Funcionamiento, mediciones y reparación": "Aplicar un método de reparación, medir componentes y comparar equipos Junkers y Splendid.", "Equipos Orbis": "Mantener y reparar equipos Orbis: diafragma, cámara de agua, botonera y encendido.", "Tiro forzado en general": "Entender qué cambia en un calefón de tiro forzado y revisar el presostato.", "Junkers, Bosch, Mademsa y Haceb": "Trabajar con equipos reales de tiro forzado de Junkers, Bosch, Mademsa y Haceb.", "Rheem y Splendid": "Conocer los equipos de tiro forzado de Rheem y Splendid.", "Instalación y normativa": "Elegir el calefón correcto e instalarlo según la normativa, también de interior a exterior.", "Conversión de gas": "Configurar la placa para convertir un equipo de un gas a otro."};
 const leadOk=()=>{try{return !!localStorage.getItem('ac_lead')}catch(e){return false}};
 function save(){ if(!progRef) return; clearTimeout(saveT); saveT=setTimeout(()=>setDoc(progRef,{seen:[...seen],updatedAt:serverTimestamp()},{merge:true}).catch(e=>console.warn(e)),800); }
