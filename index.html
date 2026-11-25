@@ -1072,13 +1072,13 @@ footer.site a{color:#1d1d1f}
       <article class="xcard best"><span class="tag">AHORRA</span><h3>Pack Calefón + Caldera</h3>
         <p>Los dos cursos con una sola cuenta: calefones y calderas murales, con sus certificados y la comunidad.</p>
         <ul><li>Aprende Calefón: 88 videos + material extra</li><li>Aprende Caldera: 86 videos + 59 manuales</li><li>Comunidad de +200 técnicos</li></ul>
-        <div class="xprice launch-only">$59.990<s>$69.980</s><small>Ahorras $9.990 · solo hasta el 30 de noviembre</small></div>
+        <div class="xprice launch-only">$64.990<s>$79.980</s><small>Ahorras $14.990 · solo hasta el 30 de noviembre</small></div>
         <div class="xprice after-launch" style="font-size:22px">Precio especial por WhatsApp</div>
         <div class="xbtns"><a class="btn btn-buy" href="comprar/?curso=pack">Quiero el pack →</a><a class="xlink" href="https://aprendecaldera.github.io/" target="_blank" rel="noopener">Ver Aprende Caldera ↗</a></div></article>
       <article class="xcard"><span class="tag" style="background:#ff4d3d;color:#1a0b00">OTRO CURSO</span><h3>Solo Aprende Caldera</h3>
         <p>¿También trabajas con calderas? Puedes llevar ese curso por separado: caldera mural tradicional y de condensación.</p>
         <ul><li>86 videos en 2 cursos</li><li>+50 manuales de Baxi, Ariston, Peisa, Immergas y más</li><li>Su propio certificado de finalización</li></ul>
-        <div class="xprice launch-only">$39.990<s>$119.990</s><small>Precio de lanzamiento hasta el 30 de noviembre</small></div>
+        <div class="xprice launch-only">$49.990<s>$119.990</s><small>Precio de lanzamiento hasta el 30 de noviembre</small></div>
         <div class="xprice after-launch">$119.990</div>
         <div class="xbtns"><a class="btn btn-ghost" href="https://aprendecaldera.github.io/" target="_blank" rel="noopener">Ver el curso ↗</a><a class="xlink" href="comprar/?curso=caldera">Comprar con Mercado Pago →</a></div></article>
       <article class="xcard"><span class="tag" style="background:var(--card);color:var(--orange2);border:1px solid var(--line)">1 A 1</span><h3>Asesoría por videollamada</h3>
@@ -1336,7 +1336,7 @@ if(onAuthStateChanged) onAuthStateChanged(auth, async u=>{
   const WA_BUY='https://wa.me/56993992990?text='+encodeURIComponent('Hola, quiero comprar el acceso a Aprende Calefón');
   document.querySelectorAll('.topbar').forEach(e=>e.innerHTML='🔥 Aprende Calefón · <b>pago único, acceso permanente</b>');
   document.querySelectorAll('.discount,.price-deadline,.offer-deadline,.next-price,.cd,.offer-old,.price s,.mbar-cd').forEach(e=>e.style.display='none');
-  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); let n; while(n=w.nextNode()){ let v=n.nodeValue; if(v.includes('$29.990')) v=v.replaceAll('$29.990','$59.990').replace(' hasta el 30 de noviembre',''); if(v.includes('$39.990')) v=v.replaceAll('$39.990','$119.990'); if(v.includes('PRECIO DE LANZAMIENTO')) v=v.replace('PRECIO DE LANZAMIENTO','ACCESO COMPLETO'); if(v!==n.nodeValue) n.nodeValue=v; }
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT); let n; while(n=w.nextNode()){ let v=n.nodeValue; if(v.includes('$29.990')) v=v.replaceAll('$29.990','$59.990').replace(' hasta el 30 de noviembre',''); if(v.includes('$49.990')) v=v.replaceAll('$49.990','$119.990'); if(v.includes('PRECIO DE LANZAMIENTO')) v=v.replace('PRECIO DE LANZAMIENTO','ACCESO COMPLETO'); if(v!==n.nodeValue) n.nodeValue=v; }
   document.querySelectorAll('a[href*="curso=pack"]').forEach(a=>{a.href='https://wa.me/56993992990?text='+encodeURIComponent('Hola, quiero el Pack Aprende Caldera + Aprende Calefón');a.target='_blank';});
   document.querySelectorAll('a[href*="%2429.990"]').forEach(a=>{a.href=a.href.replace('%2429.990','%2459.990');});
 })();
