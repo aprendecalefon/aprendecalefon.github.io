@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprar · Aprende Calefón</title><meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="../assets/aprende-calefon-mark.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--a:#ff6a00;--ink:#1d1d1f;--mut:#6e6e73;--line:#e5e5ea}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f5f7;font:16px/1.5 Inter,system-ui,sans-serif;color:var(--ink);padding:20px}
+.card{background:#fff;border-radius:24px;max-width:440px;width:100%;padding:30px 26px;box-shadow:0 30px 60px -30px #0003;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;margin-bottom:18px}.logo img{width:30px}
+h1{font-size:24px;letter-spacing:-.02em;margin:0 0 6px}p{color:var(--mut);margin:0 0 14px}
+.price{font-size:38px;font-weight:800;letter-spacing:-.03em;margin:8px 0 2px}
+.spin{width:38px;height:38px;border:4px solid #eee;border-top-color:var(--a);border-radius:50%;margin:18px auto;animation:s 1s linear infinite}@keyframes s{to{transform:rotate(1turn)}}
+.btn{display:flex;justify-content:center;width:100%;padding:14px;border-radius:999px;font-weight:700;text-decoration:none;margin-top:10px;border:0;font:inherit;cursor:pointer}
+.pri{background:var(--a);color:#fff}.sec{background:#fff;color:var(--a);border:1px solid var(--a)}
+small{display:block;color:var(--mut);margin-top:14px;font-size:13px}[hidden]{display:none!important}
+</style><script src="../js/pixel.js"></script></head>
+<body><div class="card">
+  <div class="logo"><img src="../assets/aprende-calefon-mark.svg" alt="">Aprende Calefón</div>
+  <h1 id="t">Preparando tu compra…</h1>
+  <p id="d">Un momento, te llevamos a Mercado Pago.</p>
+  <div class="price" id="pr" hidden></div>
+  <div class="spin" id="sp"></div>
+  <div id="err" hidden>
+    <a class="btn pri" id="wa" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+    <a class="btn sec" href="../">Volver a la página</a>
+  </div>
+  <div id="ya" hidden><a class="btn pri" href="../aula/">Entrar a mi aula</a></div>
+  <small>🔒 Pago seguro con Mercado Pago · Tu curso se activa automáticamente al pagar</small>
+</div>
+<script type="module">
+import { auth, onAuthStateChanged, ensureProfile, crearPago } from "../js/firebase.js";
+const P = {"calefon": {"t": "Aprende Calefón", "l": 29990, "n": 59990, "c": ["calefon"]}, "caldera": {"t": "Aprende Caldera", "l": 39990, "n": 119990, "c": ["access"]}, "pack": {"t": "Pack Aprende Caldera + Aprende Calefón", "l": 59990, "n": null, "c": ["access", "calefon"]}};
+const SITIO = "calefon";
+const $ = id => document.getElementById(id);
+const qs = new URLSearchParams(location.search);
+const curso = P[qs.get("curso")] ? qs.get("curso") : "calefon";
+const prod = P[curso];
+const lanz = Date.now() <= Date.parse("2026-11-30T23:59:59-03:00");
+const precio = lanz ? prod.l : prod.n;
+const fmt = n => "$" + n.toLocaleString("es-CL");
+const wa = "https://wa.me/56993992990?text=" + encodeURIComponent("Hola, quiero comprar " + prod.t);
+$("wa").href = wa;
+if (precio) { $("pr").textContent = fmt(precio); $("pr").hidden = false; }
+function fallo(msg){ $("sp").hidden = true; $("t").textContent = "No pudimos abrir el pago"; $("d").textContent = msg || "Intenta de nuevo en un momento o compra por WhatsApp y te activo al tiro."; $("err").hidden = false; }
+if (qs.get("error")) { $("sp").hidden = true; $("t").textContent = "El pago no se completó"; $("d").textContent = "No se hizo ningún cobro. Puedes intentarlo de nuevo."; $("err").hidden = false;
+  $("err").insertAdjacentHTML("afterbegin", '<a class="btn pri" href="?curso=' + curso + '">Intentar de nuevo</a>'); $("wa").className = "btn sec"; }
+else if (!precio) { fallo("Este producto se compra por WhatsApp. Escríbeme y te paso el precio especial."); }
+else onAuthStateChanged(auth, async u => {
+  if (!u) { location.href = "../cuenta/?modo=registro&next=" + encodeURIComponent("/comprar/?curso=" + curso); return; }
+  try {
+    const perfil = await ensureProfile(u);
+    if (prod.c.every(c => perfil[c])) { $("sp").hidden = true; $("pr").hidden = true; $("t").textContent = "¡Ya tienes este curso!"; $("d").textContent = "Tu acceso está activo."; $("ya").hidden = false; return; }
+    $("t").textContent = prod.t; $("d").textContent = "Te llevamos a Mercado Pago para pagar.";
+    trk("InitiateCheckout", { value: precio, currency: "CLP", content_name: prod.t, content_ids: [curso] });
+    const r = await crearPago(curso, SITIO);
+    location.href = r.url;
+  } catch (e) { console.error(e); fallo(); }
+});
+</script></body></html>

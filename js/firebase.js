@@ -2,7 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, orderBy, limit, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-functions.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAy2aUZXwVSxApv5Ar_jUIERYxPEoRQeQ8",
@@ -15,15 +16,18 @@ const firebaseConfig = {
 
 // Correo(s) de administrador: el mismo que va en las reglas de Firestore
 export const ADMIN_EMAILS = ["cursos.academiadelexito@gmail.com"];
-export const MP_LINK = "https://mpago.la/25EDXe5";
+export const MP_LINK = "/comprar/?curso=calefon";   // compra con activación automática
 export const WA = "https://wa.me/56993992990?text=";
 export const DRIVE_FOLDER = "https://drive.google.com/drive/folders/1yR0QOfEu9D9z-yGz3OIviYX0-8WI-FKd";
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
-  sendPasswordResetEmail, signOut, updateProfile, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, orderBy, limit, getDocs };
+  sendPasswordResetEmail, signOut, updateProfile, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, orderBy, limit, getDocs, onSnapshot };
+
+// Crea el pago en Mercado Pago ligado a la cuenta (función del servidor)
+export const crearPago = (curso, sitio) => httpsCallable(getFunctions(app, "us-central1"), "crearPago")({ curso, sitio }).then(r => r.data);
 
 export const isAdmin = u => !!u && !!u.email && ADMIN_EMAILS.includes(u.email.toLowerCase());
 
@@ -34,7 +38,7 @@ export async function ensureProfile(user, name) {
   if (s.exists()) return s.data();
   const data = { name: (name || user.displayName || "").trim(), email: (user.email || "").toLowerCase(), access: false, createdAt: serverTimestamp() };
   await setDoc(ref, data);
-  return data;
+  return { ...data, _nuevo: true };
 }
 
 export function authError(e) {

@@ -26,7 +26,8 @@ input:focus{outline:2px solid #ffd2b0;border-color:var(--brand)}
 .msg{margin-top:14px;font-size:14px;padding:10px 12px;border-radius:10px;display:none}.msg.err{display:block;background:var(--soft);color:#8a1f19}.msg.ok{display:block;background:#effaf3;color:#14532d}
 .foot{text-align:center;font-size:14px;color:var(--muted);margin-top:16px}
 [hidden]{display:none!important}
-</style></head><body>
+</style><script src="../js/pixel.js"></script>
+</head><body>
 <header><div class="hd"><a class="logo" href="../"><img src="../assets/aprende-calefon-mark.svg" alt="">Aprende Calefón</a></div></header>
 <main><div class="box">
   <h1 id="ttl">Entra a tu aula</h1><p class="sub" id="sub">Ingresa o crea tu cuenta para ver los cursos.</p>
@@ -61,11 +62,11 @@ $("f").onsubmit=async e=>{ e.preventDefault(); if(busy)return; const email=$("em
   if(mode==="up"&&name.split(/\s+/).length<2){ msg("Escribe tu nombre y apellido, tal como quieres que salga en tu certificado."); return; }
   busy=true; $("go").disabled=true; msg("");
   try{
-    if(mode==="up"){ const r=await createUserWithEmailAndPassword(auth,email,pass); await updateProfile(r.user,{displayName:name}); await ensureProfile(r.user,name); }
+    if(mode==="up"){ const r=await createUserWithEmailAndPassword(auth,email,pass); await updateProfile(r.user,{displayName:name}); await ensureProfile(r.user,name); trk("CompleteRegistration"); }
     else { const r=await signInWithEmailAndPassword(auth,email,pass); await ensureProfile(r.user); }
     location.href=next();
   }catch(err){ msg(authError(err)); } finally{ busy=false; $("go").disabled=false; } };
-$("google").onclick=async()=>{ msg(""); try{ const r=await signInWithPopup(auth,new GoogleAuthProvider()); await ensureProfile(r.user); location.href=next(); }catch(err){ msg(authError(err)); } };
+$("google").onclick=async()=>{ msg(""); try{ const r=await signInWithPopup(auth,new GoogleAuthProvider()); const pf=await ensureProfile(r.user); if(pf&&pf._nuevo) trk("CompleteRegistration"); location.href=next(); }catch(err){ msg(authError(err)); } };
 $("forgot").onclick=async e=>{ e.preventDefault(); const email=$("email").value.trim(); if(!email){ msg("Escribe tu correo arriba y vuelve a tocar “¿Olvidaste tu contraseña?”."); return; }
   try{ await sendPasswordResetEmail(auth,email); msg("Te enviamos un correo para crear una contraseña nueva. Revisa también spam.",true); }catch(err){ msg(authError(err)); } };
 onAuthStateChanged(auth,u=>{ if(u&&!busy) $("sub").innerHTML='Ya iniciaste sesión como <b>'+(u.email||'')+'</b>. <a href="'+next()+'">Ir a mi aula →</a>'; });
