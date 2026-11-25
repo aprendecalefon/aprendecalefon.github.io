@@ -27,6 +27,7 @@ export { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndP
   sendPasswordResetEmail, signOut, updateProfile, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, orderBy, limit, getDocs, onSnapshot };
 
 // Crea el pago en Mercado Pago ligado a la cuenta (función del servidor)
+export const compartirAcceso = (curso, uid) => httpsCallable(getFunctions(app, "us-central1"), "compartirAcceso")({ curso, uid }).then(r => r.data);
 export const crearPago = (curso, sitio) => httpsCallable(getFunctions(app, "us-central1"), "crearPago")({ curso, sitio }).then(r => r.data);
 
 export const isAdmin = u => !!u && !!u.email && ADMIN_EMAILS.includes(u.email.toLowerCase());
