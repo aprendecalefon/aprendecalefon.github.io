@@ -48,7 +48,7 @@ const precio = Date.now() <= Date.parse("2026-11-30T23:59:59-03:00") ? prod.l : 
 $("waL").href = "https://wa.me/56993992990?text=" + encodeURIComponent("Hola, acabo de pagar " + prod.t + (pago ? " (pago N° " + pago + ")" : "") + " y aún no se activa mi acceso.");
 // Registrar la compra en el pixel una sola vez (mismo ID que usa el servidor, para no contarla doble)
 const st = qs.get("status") || qs.get("collection_status");
-if (pago && st === "approved") { let k = "trk_" + pago, hecho = false; try { hecho = !!localStorage.getItem(k); localStorage.setItem(k, 1); } catch (e) {}
+if (pago && st === "approved" && curso !== "prueba") { let k = "trk_" + pago, hecho = false; try { hecho = !!localStorage.getItem(k); localStorage.setItem(k, 1); } catch (e) {}
   if (!hecho) trk("Purchase", { value: precio, currency: "CLP", content_name: prod.t, content_ids: [curso], content_type: "product" }, "pago_" + pago); }
 if (qs.get("pendiente") || st === "pending" || st === "in_process") $("ed").textContent = "Tu pago quedó pendiente de aprobación. Apenas se apruebe, tu curso se activa automáticamente.";
 const lento = setTimeout(() => { $("esp").hidden = true; $("lento").hidden = false; }, 45000);
